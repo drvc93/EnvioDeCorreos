@@ -15,5 +15,14 @@ namespace ModEnvioCorreo
         {
             InitializeComponent();
         }
+
+        private void barbtnModEnvios_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            WfEnvioAut wfe = new WfEnvioAut();
+            wfe.MdiParent = this;
+            wfe.Show();
+           
+
+        }
     }
 }

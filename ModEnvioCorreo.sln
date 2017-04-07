@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModEnvioCorreo", "ModEnvioCorreo\ModEnvioCorreo.csproj", "{06C86353-C336-4738-8D6D-4072551D9924}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaData", "CapaData\CapaData.csproj", "{6D7FE9F1-1DA8-450B-BE9C-EB29EF5000DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaEntidad", "CapaEntidad\CapaEntidad.csproj", "{A18523E5-2E2B-4EA5-A7EC-EA230B6CF66A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{06C86353-C336-4738-8D6D-4072551D9924}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06C86353-C336-4738-8D6D-4072551D9924}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06C86353-C336-4738-8D6D-4072551D9924}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D7FE9F1-1DA8-450B-BE9C-EB29EF5000DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D7FE9F1-1DA8-450B-BE9C-EB29EF5000DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D7FE9F1-1DA8-450B-BE9C-EB29EF5000DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D7FE9F1-1DA8-450B-BE9C-EB29EF5000DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A18523E5-2E2B-4EA5-A7EC-EA230B6CF66A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A18523E5-2E2B-4EA5-A7EC-EA230B6CF66A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A18523E5-2E2B-4EA5-A7EC-EA230B6CF66A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A18523E5-2E2B-4EA5-A7EC-EA230B6CF66A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

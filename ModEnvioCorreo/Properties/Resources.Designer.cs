@@ -63,9 +63,49 @@ namespace ModEnvioCorreo.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap parameters_icn {
+            get {
+                object obj = ResourceManager.GetObject("parameters_icn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sent_aut_16 {
+            get {
+                object obj = ResourceManager.GetObject("sent_aut_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sent_aut_icon {
+            get {
+                object obj = ResourceManager.GetObject("sent_aut_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sent_mail_icn {
             get {
                 object obj = ResourceManager.GetObject("sent_mail_icn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap update_icn {
+            get {
+                object obj = ResourceManager.GetObject("update_icn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
