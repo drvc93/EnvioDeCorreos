@@ -53,6 +53,7 @@ namespace ModEnvioCorreo
         private void timer1_Tick(object sender, EventArgs e)
         {
             txtHora.Text = DateTime.Now.ToString("HH:mm:ss");
+            CargarGrillaDiaEnvios();
         }
 
         private void chkEnvioAutAct_CheckedChanged(object sender, EventArgs e)
@@ -129,6 +130,55 @@ namespace ModEnvioCorreo
         private void btnRefreshGridEnvios_Click(object sender, EventArgs e)
         {
             CargarGrillaEnviosAut();
+        }
+
+        public void CargarGrillaDiaEnvios()
+        {
+            string ls_comp, ls_sDia = "";
+            ls_comp = cboCompania.SelectedValue.ToString();
+            CDEnviosAut env = new CDEnviosAut();
+
+            if (chkEnvioAutAct.Checked == true)
+            {
+                DateTime dt_fechaDia = Convert.ToDateTime(txtFechaAut.Text);
+                int nDia = (int)dt_fechaDia.DayOfWeek;
+
+                switch (nDia)
+                {
+                    case 1:
+                        ls_sDia = "1LU";
+                        break;
+
+                    case 2:
+                        ls_sDia = "2MA";
+                        break;
+                    case 3:
+                        ls_sDia = "3MI";
+                        break;
+                    case 4:
+                        ls_sDia = "4JU";
+                        break;
+                    case 5:
+                        ls_sDia = "5VI";
+                        break;
+                    case 6:
+                        ls_sDia = "6SA";
+                        break;
+                    case 7:
+                        ls_sDia = "7DO";
+                        break;
+
+
+                }
+
+
+            }
+            else
+            {
+                ls_sDia = cboDia.SelectedValue.ToString() ;
+            }
+
+            gvEnviosDelDia.DataSource = env.DiasEnvios(ls_comp,ls_sDia);
         }
 
     }
