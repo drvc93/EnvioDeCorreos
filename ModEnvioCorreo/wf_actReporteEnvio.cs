@@ -17,7 +17,7 @@ namespace ModEnvioCorreo
 {
     public partial class wf_actReporteEnvio : DevExpress.XtraEditors.XtraForm
     {
-       // private bool _inCellValueChanged = false;
+        // private bool _inCellValueChanged = false;
         public string codReporte;
         public string descripcionRep;
         public string comp;
@@ -29,7 +29,6 @@ namespace ModEnvioCorreo
         public wf_actReporteEnvio()
         {
             InitializeComponent();
-            
         }
             
         private void wf_actReporteEnvio_Load(object sender, EventArgs e)
@@ -41,20 +40,19 @@ namespace ModEnvioCorreo
             ComboGrillaUsuario();
             ComboGrillaDia();
             chkEstado.Checked = estado;
-            
         }
 
-        public void CargarComboTipoData (){
-
+        public void CargarComboTipoData()
+        {
             cboTipoData.DisplayMember = "Text";
             cboTipoData.ValueMember = "Value";
-            var items = new[] { 
-             new { Text = "Excell ASCII", Value = "AS" }, 
-             new { Text = "Excell DATA", Value = "EX" }, 
-             new { Text = "Excell PROPIO", Value = "PO" },
-             new { Text = "PLANTILLA WEB", Value = "WB" },
-           
-             };
+            var items = new[]
+            {
+                new { Text = "Excell ASCII", Value = "AS" },
+                new { Text = "Excell DATA", Value = "EX" },
+                new { Text = "Excell PROPIO", Value = "PO" },
+                new { Text = "PLANTILLA WEB", Value = "WB" },
+            };
 
             cboTipoData.DataSource = items;
             cboTipoData.SelectedValue = tipodata;
@@ -62,14 +60,10 @@ namespace ModEnvioCorreo
 
         public void CargarComboUndNegocio()
         {
-
             CDUnidadNegocio und = new CDUnidadNegocio();
             cboUndNeg.DataSource = und.UnidadNegocioxCia(comp);
             cboUndNeg.ValueMember = "c_unidadnegocio";
             cboUndNeg.DisplayMember = "c_descripcion";
-            
-
-   
         }
 
         public void ComboGrillaUsuario()
@@ -93,7 +87,6 @@ namespace ModEnvioCorreo
             CEDiaRepAuto c6 = new CEDiaRepAuto("6SA", "SABADO");
             CEDiaRepAuto c7 = new CEDiaRepAuto("7DO", "DOMINGO");
 
-
             List<CEDiaRepAuto> lst = new List<CEDiaRepAuto>();
             lst.Add(c1);
             lst.Add(c2);
@@ -112,24 +105,22 @@ namespace ModEnvioCorreo
         public void CargarGrillaReportes()
         {
             CDEnviosAut env = new CDEnviosAut();
-            dtReportes =  env.ListaUsuariosxReporte(comp, txtCod.Text, 2);
+            dtReportes = env.ListaUsuariosxReporte(comp, txtCod.Text, 2);
             gvListaUsuarios.DataSource = dtReportes;
         }
 
         private void btnInsertarUs_Click(object sender, EventArgs e)
-        {   
-           DataRow dr =  dtReportes.NewRow();
-           dr[1] = codReporte;
-           dr[2] = "";
-           dr[6] = 1;
-           dr[7] = "SISTCORREO";
-           dr[8] = DateTime.Now.ToString();
-           dr[9] ="N";
-           dtReportes.Rows.Add(dr);
-           dtReportes.AcceptChanges();
+        { 
+            DataRow dr = dtReportes.NewRow();
+            dr[1] = codReporte;
+            dr[2] = "";
+            dr[6] = 1;
+            dr[7] = "SISTCORREO";
+            dr[8] = DateTime.Now.ToString();
+            dr[9] = "N";
+            dtReportes.Rows.Add(dr);
+            dtReportes.AcceptChanges();
         }
-
-       
 
         private void btnGrabar_Click(object sender, EventArgs e)
         {
@@ -159,16 +150,14 @@ namespace ModEnvioCorreo
                     repus.CReporteenvio = txtCod.Text;
                     repus.CUltimousuario = "SISTCORREO";
 
-                     if (string.IsNullOrEmpty(gridView1.GetRowCellValue(i, "d_hora").ToString()) == true)
-                     {
-                         MessageBox.Show("Falto Ingresar la hora", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                         gridView1.SelectRow(i);
-                         gridView1.FocusedRowHandle = i;
-     
+                    if (string.IsNullOrEmpty(gridView1.GetRowCellValue(i, "d_hora").ToString()) == true)
+                    {
+                        MessageBox.Show("Falto Ingresar la hora", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        gridView1.SelectRow(i);
+                        gridView1.FocusedRowHandle = i;
                          
-                         return;
-                     }
-                   
+                        return;
+                    }
 
                     repus.DHora = Convert.ToDateTime(gridView1.GetRowCellValue(i, "d_hora"));
                     repus.DUltimafechamodificacion = DateTime.Now;
@@ -177,7 +166,6 @@ namespace ModEnvioCorreo
                     {
                         contUpdt = contUpdt + 1;
                     }
-
                 }
             }
 
@@ -190,7 +178,6 @@ namespace ModEnvioCorreo
 
         private void gridView1_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
         {
-          
         }
 
         private void gridView1_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
@@ -211,7 +198,6 @@ namespace ModEnvioCorreo
             {
                 MessageBox.Show("Debe seleccionar un registro primero.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
-
             }
 
             DialogResult dgresult = MessageBox.Show("¿Esta seguro que desea eliminar el registro ?", "Aviso", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
@@ -221,38 +207,29 @@ namespace ModEnvioCorreo
                 return;
             }
 
+            c_flagReg = gridView1.GetRowCellValue(row, "c_flagReg").ToString();
+            if (c_flagReg == "S")
+            {
+                CERepEnvUsu repus = new CERepEnvUsu();
+                CDEnviosAut env = new CDEnviosAut();
+                repus.CCompania = comp;
+                repus.CDia = gridView1.GetRowCellValue(row, "c_dia").ToString();
+                repus.CUsuarioenvio = gridView1.GetRowCellValue(row, "c_usuarioenvio").ToString();
+                repus.DHora = Convert.ToDateTime(gridView1.GetRowCellValue(row, "d_hora"));
+                repus.CReporteenvio = txtCod.Text;
 
+                resultDelete = env.DeleteRepEnvioUs(repus);
 
-             c_flagReg = gridView1.GetRowCellValue(row, "c_flagReg").ToString();
-             if (c_flagReg == "S")
-             {
-                 CERepEnvUsu repus = new CERepEnvUsu();
-                 CDEnviosAut env = new CDEnviosAut();
-                 repus.CCompania = comp;
-                 repus.CDia = gridView1.GetRowCellValue(row, "c_dia").ToString();
-                 repus.CUsuarioenvio = gridView1.GetRowCellValue(row, "c_usuarioenvio").ToString();
-                 repus.DHora = Convert.ToDateTime(gridView1.GetRowCellValue(row, "d_hora"));
-                 repus.CReporteenvio = txtCod.Text;
-
-                 resultDelete = env.DeleteRepEnvioUs(repus);
-
-                 if (resultDelete == "OK")
-                 {
-                     MessageBox.Show("Se elimino el registro correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                     CargarGrillaReportes();
-                 }
-
-
-             }
-
-             else
-             {
-                 gridView1.DeleteRow(row);
-             }
-
-
+                if (resultDelete == "OK")
+                {
+                    MessageBox.Show("Se elimino el registro correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    CargarGrillaReportes();
+                }
+            }
+            else
+            {
+                gridView1.DeleteRow(row);
+            }
         }
-
-        
     }
 }

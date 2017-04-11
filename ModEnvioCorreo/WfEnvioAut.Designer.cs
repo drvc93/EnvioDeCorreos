@@ -287,6 +287,7 @@
             this.btnEnvioManual.Size = new System.Drawing.Size(78, 41);
             this.btnEnvioManual.TabIndex = 10;
             this.btnEnvioManual.Text = "Envio Manual";
+            this.btnEnvioManual.Click += new System.EventHandler(this.btnEnvioManual_Click);
             // 
             // dtHoraManual
             // 

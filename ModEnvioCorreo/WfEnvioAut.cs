@@ -12,6 +12,16 @@ using CapaData;
 using CapaEntidad;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraEditors.Controls;
+using Microsoft.Office.Interop.Outlook;
+using System.Net.Mail;
+using System.Runtime.InteropServices;
+using Outlook = Microsoft.Office.Interop.Outlook;
+using System.Net.Mail;
+using System.Text;
+
+
+using System.IO;
+
 
 
 namespace ModEnvioCorreo
@@ -324,6 +334,127 @@ namespace ModEnvioCorreo
 
         }
 
+      private void btnEnvioManual_Click(object sender, EventArgs e)
+       {
+
+           sendEMailThroughOUTLOOK();
+
+           //Outlook.Application oApp = new Outlook.Application();
+           //CreateSendItem(oApp);
+
+
+
+
+
+
+       }
+
+      public void sendEMailThroughOUTLOOK()
+      {
+          int unicode = 0022;
+          char character = (char) unicode;
+          string comillas = (Convert.ToChar(39)).ToString();
+          try
+          {
+              // Create the Outlook application.
+              Outlook.Application oApp = new Outlook.Application();
+              // Create a new mail item.
+              Outlook.MailItem oMsg = (Outlook.MailItem)oApp.CreateItem(Outlook.OlItemType.olMailItem);
+              // Set HTMLBody. 
+              //add the body of the email
+              string msHTML = "<button type=" + comillas + "button" + comillas + "class=" + comillas + "btn btn-primary" + comillas + ">Basic</button>";
+              msHTML = GetHeaderOrFoodHtml("H") + msHTML + GetHeaderOrFoodHtml("F");
+
+              oMsg.HTMLBody =  msHTML;
+              oMsg.BodyFormat = OlBodyFormat.olFormatHTML;
+              
+              String sDisplayName = "MyAttachment";
+              int iPosition = (int)oMsg.Body.Length + 1;
+              int iAttachType = (int)Outlook.OlAttachmentType.olByValue;
+              //now attached the file
+              Outlook.Attachment oAttach = oMsg.Attachments.Add(@"D:\\Paisaje.jpg", iAttachType, iPosition, sDisplayName);
+              //Subject line
+              oMsg.Subject = "Your Subject will go here.";
+              // Add a recipient.
+              Outlook.Recipients oRecips = (Outlook.Recipients)oMsg.Recipients;
+              // Change the recipient in the next line if necessary.
+              Outlook.Recipient oRecip = (Outlook.Recipient)oRecips.Add("dvillanueva@filtroslys.com.pe");
+              oRecip.Resolve();
+              // Send.
+              oMsg.Send();
+              // Clean up.
+              oRecip = null;
+              oRecips = null;
+              oMsg = null;
+              oApp = null;
+          }//end of try block
+          catch (System.Exception ex)
+          {
+              MessageBox.Show(ex.Message, "Aviso");
+          }//end of catch
+      }//end of Email Method
+
+      private void CreateSendItem(Outlook.Application OutlookApp)
+      {
+          Outlook.MailItem mail = null;
+          Outlook.Recipients mailRecipients = null;
+          Outlook.Recipient mailRecipient = null;
+          try
+          {
+              mail = OutlookApp.CreateItem(Outlook.OlItemType.olMailItem)
+                 as Outlook.MailItem;
+              mail.Subject = "A programatically generated e-mail";
+              mailRecipients = mail.Recipients;
+              mailRecipient = mailRecipients.Add("Eugene Astafiev");
+              mailRecipient.Resolve();
+              if (mailRecipient.Resolved)
+              {
+                  mail.Send();
+              }
+              else
+              {
+                  System.Windows.Forms.MessageBox.Show(
+                      "There is no such record in your address book.");
+              }
+          }
+          catch (System.Exception ex)
+          {
+              System.Windows.Forms.MessageBox.Show(ex.Message,
+                  "An exception is occured in the code of add-in.");
+          }
+          finally
+          {
+              if (mailRecipient != null) Marshal.ReleaseComObject(mailRecipient);
+              if (mailRecipients != null) Marshal.ReleaseComObject(mailRecipients);
+              if (mail != null) Marshal.ReleaseComObject(mail);
+          }
+      }
+
+      public string GetHeaderOrFoodHtml(string tipoCadena)
+      {
+          string resultHtml = "";
+          if (tipoCadena == "H")
+          {
+              resultHtml = "<!DOCTYPE html> " +
+                            "<html lang='en'>" +
+                            "<head>" +
+                            "<title>Bootstrap Example</title>" +
+                             "<meta charset='utf-8'>" +
+                             "<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>" +
+                              "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js'></script>" +
+                               "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>" +
+                               "</head>" +
+                                "<body>";
+          }
+
+          if (tipoCadena == "F")
+          {
+              resultHtml = "</body></html>";
+          }
+
+
+          return resultHtml;
+      }
        
     }
 }
