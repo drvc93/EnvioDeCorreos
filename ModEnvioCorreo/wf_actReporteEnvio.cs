@@ -17,6 +17,7 @@ namespace ModEnvioCorreo
 {
     public partial class wf_actReporteEnvio : DevExpress.XtraEditors.XtraForm
     {
+       // private bool _inCellValueChanged = false;
         public string codReporte;
         public string descripcionRep;
         public string comp;
@@ -128,10 +129,130 @@ namespace ModEnvioCorreo
            dtReportes.AcceptChanges();
         }
 
-        private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+       
+
+        private void btnGrabar_Click(object sender, EventArgs e)
+        {
+            string c_flagreg;
+            int contUpdt = 0 ;
+            for (int i = 0; i < gridView1.DataRowCount; i++)
+            {
+                c_flagreg = gridView1.GetRowCellValue(i, "c_flagReg").ToString() ;
+
+                if (c_flagreg == "N")
+                {
+                    string result = "";
+                    CERepEnvUsu repus = new CERepEnvUsu();
+                    CDEnviosAut env = new CDEnviosAut();
+                    repus.CCompania = comp;
+                    repus.CDia = gridView1.GetRowCellValue(i, "c_dia").ToString();
+                    repus.CUsuarioenvio = gridView1.GetRowCellValue(i, "c_usuarioenvio").ToString();
+                    if (Convert.ToBoolean(gridView1.GetRowCellValue(i, "c_estado")) == true)
+                    {
+                        repus.CEstado = "A";
+                    }
+                    else
+                    {
+                        repus.CEstado = "I";
+                    }
+
+                    repus.CReporteenvio = txtCod.Text;
+                    repus.CUltimousuario = "SISTCORREO";
+
+                     if (string.IsNullOrEmpty(gridView1.GetRowCellValue(i, "d_hora").ToString()) == true)
+                     {
+                         MessageBox.Show("Falto Ingresar la hora", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                         gridView1.SelectRow(i);
+                         gridView1.FocusedRowHandle = i;
+     
+                         
+                         return;
+                     }
+                   
+
+                    repus.DHora = Convert.ToDateTime(gridView1.GetRowCellValue(i, "d_hora"));
+                    repus.DUltimafechamodificacion = DateTime.Now;
+                    result = env.UpdateInsertRepEnvioUs(repus);
+                    if (result == "OK")
+                    {
+                        contUpdt = contUpdt + 1;
+                    }
+
+                }
+            }
+
+            if (contUpdt > 0)
+            {
+                MessageBox.Show("Se actualizo correctamente los datos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+        }
+
+        private void gridView1_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
+        {
+          
+        }
+
+        private void gridView1_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             int row = e.RowHandle;
+           
             gridView1.SetRowCellValue(row, "c_flagReg", "N");
-        } 
+        }
+
+        private void btnEliminarUsuario_Click(object sender, EventArgs e)
+        {
+            string c_flagReg, resultDelete = "";
+            int row = -1;
+
+            row = gridView1.FocusedRowHandle;
+
+            if (row < 0)
+            {
+                MessageBox.Show("Debe seleccionar un registro primero.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+
+            }
+
+            DialogResult dgresult = MessageBox.Show("¿Esta seguro que desea eliminar el registro ?", "Aviso", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+
+            if (dgresult == DialogResult.No || dgresult == DialogResult.Cancel)
+            {
+                return;
+            }
+
+
+
+             c_flagReg = gridView1.GetRowCellValue(row, "c_flagReg").ToString();
+             if (c_flagReg == "S")
+             {
+                 CERepEnvUsu repus = new CERepEnvUsu();
+                 CDEnviosAut env = new CDEnviosAut();
+                 repus.CCompania = comp;
+                 repus.CDia = gridView1.GetRowCellValue(row, "c_dia").ToString();
+                 repus.CUsuarioenvio = gridView1.GetRowCellValue(row, "c_usuarioenvio").ToString();
+                 repus.DHora = Convert.ToDateTime(gridView1.GetRowCellValue(row, "d_hora"));
+                 repus.CReporteenvio = txtCod.Text;
+
+                 resultDelete = env.DeleteRepEnvioUs(repus);
+
+                 if (resultDelete == "OK")
+                 {
+                     MessageBox.Show("Se elimino el registro correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                     CargarGrillaReportes();
+                 }
+
+
+             }
+
+             else
+             {
+                 gridView1.DeleteRow(row);
+             }
+
+
+        }
+
+        
     }
 }

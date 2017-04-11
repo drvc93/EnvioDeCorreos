@@ -49,11 +49,11 @@
             this.col_usuarioenv = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_ultusuario = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_ultfecha = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_flagreg = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnCancelar = new DevExpress.XtraEditors.SimpleButton();
             this.btnGrabar = new DevExpress.XtraEditors.SimpleButton();
             this.cboTipoData = new System.Windows.Forms.ComboBox();
             this.cboUndNeg = new System.Windows.Forms.ComboBox();
-            this.col_flagreg = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gvListaUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
@@ -152,6 +152,7 @@
             this.btnEliminarUsuario.Size = new System.Drawing.Size(75, 23);
             this.btnEliminarUsuario.TabIndex = 11;
             this.btnEliminarUsuario.Text = "Eliminar";
+            this.btnEliminarUsuario.Click += new System.EventHandler(this.btnEliminarUsuario_Click);
             // 
             // gvListaUsuarios
             // 
@@ -181,7 +182,8 @@
             this.gridView1.GridControl = this.gvListaUsuarios;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanged);
+            this.gridView1.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanging);
+            this.gridView1.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView1_RowUpdated);
             // 
             // col_diaNom
             // 
@@ -257,6 +259,12 @@
             this.col_ultfecha.Visible = true;
             this.col_ultfecha.VisibleIndex = 4;
             // 
+            // col_flagreg
+            // 
+            this.col_flagreg.Caption = "flag";
+            this.col_flagreg.FieldName = "c_flagReg";
+            this.col_flagreg.Name = "col_flagreg";
+            // 
             // btnCancelar
             // 
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
@@ -274,6 +282,7 @@
             this.btnGrabar.Size = new System.Drawing.Size(75, 23);
             this.btnGrabar.TabIndex = 13;
             this.btnGrabar.Text = "Guardar";
+            this.btnGrabar.Click += new System.EventHandler(this.btnGrabar_Click);
             // 
             // cboTipoData
             // 
@@ -292,12 +301,6 @@
             this.cboUndNeg.Name = "cboUndNeg";
             this.cboUndNeg.Size = new System.Drawing.Size(199, 21);
             this.cboUndNeg.TabIndex = 16;
-            // 
-            // col_flagreg
-            // 
-            this.col_flagreg.Caption = "flag";
-            this.col_flagreg.FieldName = "c_flagReg";
-            this.col_flagreg.Name = "col_flagreg";
             // 
             // wf_actReporteEnvio
             // 

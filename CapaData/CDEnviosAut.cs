@@ -140,6 +140,99 @@ namespace CapaData
              return lstUser;
          }
 
+
+         public string UpdateInsertRepEnvioUs(CERepEnvUsu ru)
+         {
+             SqlConnection cn = con.conexion();
+             string result = "";
+             SqlCommand sqlcmd = new SqlCommand();
+             sqlcmd.Connection = cn;
+             try
+             {
+                 sqlcmd.CommandText = "SP_CO_UPDATEREP_ENVIOAUT";
+                 sqlcmd.CommandType = CommandType.StoredProcedure;
+                 cn.Open();
+                 sqlcmd.Parameters.AddWithValue("@Compania", ru.CCompania);
+                 sqlcmd.Parameters.AddWithValue("@ReporteEnvio", ru.CReporteenvio);
+                 sqlcmd.Parameters.AddWithValue("@Dia", ru.CDia);
+                 sqlcmd.Parameters.AddWithValue("@Hora", ru.DHora);
+                 sqlcmd.Parameters.AddWithValue("@UsuarioEnvio", ru.CUsuarioenvio);
+                 sqlcmd.Parameters.AddWithValue("@Estado", ru.CEstado);
+                 sqlcmd.Parameters.AddWithValue("@UltUsuario", ru.CUltimousuario);
+                 sqlcmd.Parameters.AddWithValue("@UltFechaMod", ru.DUltimafechamodificacion);
+
+                 int rowsafect = sqlcmd.ExecuteNonQuery();
+                 if (rowsafect > 0)
+                 {
+
+                     result = "OK";
+                 }
+             }
+
+
+
+             catch (SqlException ex)
+             {
+
+
+                 result = ex.Message;
+
+
+             }
+
+             finally
+             {
+                 cn.Close();
+             }
+
+             return result;
+         }
+
+
+         public string DeleteRepEnvioUs(CERepEnvUsu ru)
+         {
+             SqlConnection cn = con.conexion();
+             string result = "";
+             SqlCommand sqlcmd = new SqlCommand();
+             sqlcmd.Connection = cn;
+             try
+             {
+                 sqlcmd.CommandText = "SP_CO_DELETEREP_ENVIOAUT";
+                 sqlcmd.CommandType = CommandType.StoredProcedure;
+                 cn.Open();
+                 sqlcmd.Parameters.AddWithValue("@Compania", ru.CCompania);
+                 sqlcmd.Parameters.AddWithValue("@ReporteEnvio", ru.CReporteenvio);
+                 sqlcmd.Parameters.AddWithValue("@Dia", ru.CDia);
+                 sqlcmd.Parameters.AddWithValue("@Hora", ru.DHora);
+                 sqlcmd.Parameters.AddWithValue("@UsuarioEnvio", ru.CUsuarioenvio);
+
+                 int rowsafect = sqlcmd.ExecuteNonQuery();
+                 if (rowsafect > 0)
+                 {
+
+                     result = "OK";
+                 }
+             }
+
+
+
+             catch (SqlException ex)
+             {
+
+
+                 result = ex.Message;
+
+
+             }
+
+             finally
+             {
+                 cn.Close();
+             }
+
+             return result;
+         }
+
          
 
 
