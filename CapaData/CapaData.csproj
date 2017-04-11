@@ -41,8 +41,15 @@
   <ItemGroup>
     <Compile Include="CDCompania.cs" />
     <Compile Include="CDEnviosAut.cs" />
+    <Compile Include="CDUnidadNegocio.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CapaEntidad\CapaEntidad.csproj">
+      <Project>{a18523e5-2e2b-4ea5-a7ec-ea230b6cf66a}</Project>
+      <Name>CapaEntidad</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

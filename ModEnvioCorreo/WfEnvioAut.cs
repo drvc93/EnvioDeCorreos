@@ -9,11 +9,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using CapaData;
+using CapaEntidad;
+using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraEditors.Controls;
+
 
 namespace ModEnvioCorreo
 {
     public partial class WfEnvioAut : DevExpress.XtraEditors.XtraForm
     {
+        DataTable dtUsuariosManual = new DataTable();
         public WfEnvioAut()
         {
             InitializeComponent();
@@ -25,6 +30,10 @@ namespace ModEnvioCorreo
             CargarCajasTextos();
             CargarComboDia();
             CargarGrillaEnviosAut();
+            CargarGrillaListaReportes();
+            CargarComboGrilla();
+          
+           
             
         }
 
@@ -178,8 +187,143 @@ namespace ModEnvioCorreo
                 ls_sDia = cboDia.SelectedValue.ToString() ;
             }
 
+            //Envios Dias
             gvEnviosDelDia.DataSource = env.DiasEnvios(ls_comp,ls_sDia);
+            gridColumn7.Group();
+            gridView2.ExpandAllGroups();
+
+            //Envios Horas 
+            string ls_hora;
+            ls_hora = txtHora.Text.Substring(1, 5);
+            gvEnivosHoras.DataSource = env.HorasEnvios(ls_comp, ls_sDia, ls_hora);
         }
 
+
+        public void CargarGrillaListaReportes()
+        {
+            CDEnviosAut env = new CDEnviosAut();
+            gvListaReportes.DataSource = env.ListaReporte(cboCompania.SelectedValue.ToString());
+       
+        }
+
+        public void CargarComboGrilla()
+        {
+            CDEnviosAut env = new CDEnviosAut();
+            List<CEUsuario> list = env.ListaUsuariosEnvio();
+            RepositoryItemLookUpEdit myLookup = new RepositoryItemLookUpEdit();
+            myLookup.DisplayMember = "Nombre";
+            myLookup.ValueMember = "CodUsuario";
+            myLookup.DataSource = list;
+            gridView6.Columns["c_nombre"].ColumnEdit = myLookup;
+        }
+
+        private void gridView4_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            string ls_codrep;
+            CDEnviosAut env = new CDEnviosAut();
+
+            ls_codrep = gridView4.GetDataRow(e.FocusedRowHandle)["c_reporteenvio"].ToString();
+             gvListaUsuariosRep .DataSource = env.ListaUsuariosxReporte(cboCompania.SelectedValue.ToString(), ls_codrep,1); 
+
+        }
+
+        private void btnAddUsuario_Click(object sender, EventArgs e)
+        {
+            
+            if( dtUsuariosManual.Rows.Count  <= 0) {
+
+                dtUsuariosManual.Clear();
+                dtUsuariosManual.Columns.Add("c_nombre");
+                dtUsuariosManual.Columns.Add("c_cod");
+                DataRow _ravi = dtUsuariosManual.NewRow();
+                _ravi["c_nombre"] = "";
+                _ravi["c_cod"] = "";
+                dtUsuariosManual.Rows.Add(_ravi);
+            }
+
+            else if (dtUsuariosManual.Rows.Count > 0)
+            {
+                DataRow _ravi = dtUsuariosManual.NewRow();
+                _ravi["c_nombre"] = "";
+                _ravi["c_cod"] = "";
+                dtUsuariosManual.Rows.Add(_ravi);
+            }
+      
+
+            gvUsuariosManual.DataSource = dtUsuariosManual;
+
+          
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            int row = gridView6.FocusedRowHandle;
+            gridView6.DeleteRow(row);
+
+        }
+
+        private void gridView6_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+           
+
+
+        }
+
+        private void gridView6_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            string ls_value;
+            ls_value = e.Value.ToString();
+            ls_value = ls_value;
+
+            if (dtUsuariosManual.Rows.Count > 0)
+            {
+                string ls_valuedt = "";
+
+                for (int i = 0; i < dtUsuariosManual.Rows.Count; i++)
+                {
+                    ls_valuedt = dtUsuariosManual.Rows[i]["c_nombre"].ToString();
+
+                    if (ls_valuedt == ls_value)
+                    {
+                        MessageBox.Show("No se puede agregar dos veces el mismo usuario, revisar por favor.", "Aviso");
+                        gridView6.DeleteRow(e.RowHandle);
+                    }
+
+                }
+            }
+
+        }
+
+        private void btnModificarReporte_Click(object sender, EventArgs e)
+        {
+            if (chkEnvioAutAct.Checked == true)
+            {
+                MessageBox.Show("Para modificar primero debe deneter el envio automatico.", "Aviso",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            int row = gridView4.FocusedRowHandle;
+            string codRep, descripcionRep, undNego , tipodata;
+            bool estado;
+            
+
+            codRep = gridView4.GetRowCellValue(row, "c_reporteenvio").ToString();
+            descripcionRep = gridView4.GetRowCellValue(row, "c_descripcion").ToString();
+            undNego = gridView4.GetRowCellValue(row, "c_unidadnegocio").ToString();
+            tipodata = gridView4.GetRowCellValue(row, "c_tipodata").ToString();
+            estado =  Convert.ToBoolean( gridView4.GetRowCellValue(row, "c_estado"));
+            wf_actReporteEnvio wfact = new wf_actReporteEnvio();
+            wfact.txtCod.Text = codRep;
+            wfact.txtDescripcion.Text = descripcionRep;
+            wfact.undNegocio = undNego;
+            wfact.tipodata = tipodata;
+            wfact.estado = estado;
+            wfact.comp = cboCompania.SelectedValue.ToString() ;
+            wfact.ShowDialog();
+
+
+        }
+
+       
     }
 }

@@ -1,0 +1,5 @@
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaEntidad\bin\Debug\CapaEntidad.dll
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaEntidad\bin\Debug\CapaEntidad.pdb
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaEntidad\obj\Debug\CapaEntidad.dll
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaEntidad\obj\Debug\CapaEntidad.pdb
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaEntidad\obj\Debug\CapaEntidad.csprojResolveAssemblyReference.cache

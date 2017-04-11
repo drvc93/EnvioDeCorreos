@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v15.1" />
     <Reference Include="DevExpress.Data.v15.1" />
+    <Reference Include="DevExpress.Office.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v15.1.Core" />
     <Reference Include="DevExpress.Utils.v15.1" />
     <Reference Include="DevExpress.XtraBars.v15.1" />
@@ -69,6 +70,12 @@
     <Compile Include="WfEnvioAut.Designer.cs">
       <DependentUpon>WfEnvioAut.cs</DependentUpon>
     </Compile>
+    <Compile Include="wf_actReporteEnvio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_actReporteEnvio.Designer.cs">
+      <DependentUpon>wf_actReporteEnvio.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,7 +93,12 @@
     <EmbeddedResource Include="WfEnvioAut.resx">
       <DependentUpon>WfEnvioAut.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <EmbeddedResource Include="wf_actReporteEnvio.resx">
+      <DependentUpon>wf_actReporteEnvio.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -104,6 +116,10 @@
     <ProjectReference Include="..\CapaData\CapaData.csproj">
       <Project>{6d7fe9f1-1da8-450b-be9c-eb29ef5000df}</Project>
       <Name>CapaData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CapaEntidad\CapaEntidad.csproj">
+      <Project>{a18523e5-2e2b-4ea5-a7ec-ea230b6cf66a}</Project>
+      <Name>CapaEntidad</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

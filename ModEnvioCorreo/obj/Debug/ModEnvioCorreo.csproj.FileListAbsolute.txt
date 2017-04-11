@@ -11,3 +11,6 @@ D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\bin\Debug\ModEn
 D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\Debug\ModEnvioCorreo.WfEnvioAut.resources
 D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\bin\Debug\CapaData.dll
 D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\bin\Debug\CapaData.pdb
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\bin\Debug\CapaEntidad.dll
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\bin\Debug\CapaEntidad.pdb
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\Debug\ModEnvioCorreo.wf_actReporteEnvio.resources

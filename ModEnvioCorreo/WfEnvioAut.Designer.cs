@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WfEnvioAut));
             this.cboCompania = new System.Windows.Forms.ComboBox();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -51,23 +52,60 @@
             this.txtPeriodo = new DevExpress.XtraEditors.TextEdit();
             this.TabRep = new DevExpress.XtraTab.XtraTabControl();
             this.Tab1 = new DevExpress.XtraTab.XtraTabPage();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.gvEnivosHoras = new DevExpress.XtraGrid.GridControl();
+            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gv_colDian = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gv_colDiaNom = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gv_colHora = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gv_colreporteenvi = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gv_colreporte = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gv_colundnegocio = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gvEnviosDelDia = new DevExpress.XtraGrid.GridControl();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.gvEnviosRealizados = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.Tab2 = new DevExpress.XtraTab.XtraTabPage();
-            this.btnRefreshGridEnvios = new DevExpress.XtraEditors.SimpleButton();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.gvEnviosDelDia = new DevExpress.XtraGrid.GridControl();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gvRepEnviados = new DevExpress.XtraGrid.GridControl();
-            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.Tab2 = new DevExpress.XtraTab.XtraTabPage();
+            this.gvUsuariosManual = new DevExpress.XtraGrid.GridControl();
+            this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.col_UserEnvio = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.btnEliminar = new DevExpress.XtraEditors.SimpleButton();
+            this.btnAddUsuario = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.gvListaUsuariosRep = new DevExpress.XtraGrid.GridControl();
+            this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.col_dia_gvUs = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_hora_gvUs = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_usuEnv_gvUs = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_estado_gvUs = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_ultUsuario_gvUs = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_UltFechaMod = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnModificarReporte = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.gvListaReportes = new DevExpress.XtraGrid.GridControl();
+            this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.col_codreporte = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_descripcion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_undNeg = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_estado = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_ultFecha = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_ultUsuario = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_tipodata = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnRefreshGridEnvios = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtFechaEnvF.Properties.CalendarTimeProperties)).BeginInit();
@@ -83,12 +121,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.TabRep)).BeginInit();
             this.TabRep.SuspendLayout();
             this.Tab1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvEnviosRealizados)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvEnivosHoras)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvEnviosDelDia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvRepEnviados)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvEnviosRealizados)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.Tab2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvUsuariosManual)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvListaUsuariosRep)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvListaReportes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
             this.SuspendLayout();
             // 
             // cboCompania
@@ -312,7 +359,7 @@
             this.TabRep.Location = new System.Drawing.Point(12, 139);
             this.TabRep.Name = "TabRep";
             this.TabRep.SelectedTabPage = this.Tab1;
-            this.TabRep.Size = new System.Drawing.Size(760, 367);
+            this.TabRep.Size = new System.Drawing.Size(870, 367);
             this.TabRep.TabIndex = 7;
             this.TabRep.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.Tab1,
@@ -323,14 +370,181 @@
             // 
             this.Tab1.Controls.Add(this.labelControl7);
             this.Tab1.Controls.Add(this.labelControl6);
-            this.Tab1.Controls.Add(this.gvRepEnviados);
+            this.Tab1.Controls.Add(this.gvEnivosHoras);
             this.Tab1.Controls.Add(this.gvEnviosDelDia);
             this.Tab1.Controls.Add(this.labelControl5);
             this.Tab1.Controls.Add(this.gvEnviosRealizados);
             this.Tab1.Image = global::ModEnvioCorreo.Properties.Resources.sent_aut_16;
             this.Tab1.Name = "Tab1";
-            this.Tab1.Size = new System.Drawing.Size(754, 336);
+            this.Tab1.Size = new System.Drawing.Size(864, 336);
             this.Tab1.Text = "Envio Automaticos.";
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl7.Appearance.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl7.Location = new System.Drawing.Point(307, 159);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(0, 16);
+            this.labelControl7.TabIndex = 8;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl6.Location = new System.Drawing.Point(440, 137);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(87, 16);
+            this.labelControl6.TabIndex = 7;
+            this.labelControl6.Text = "Reportes Enviados";
+            // 
+            // gvEnivosHoras
+            // 
+            this.gvEnivosHoras.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvEnivosHoras.Location = new System.Drawing.Point(439, 154);
+            this.gvEnivosHoras.MainView = this.gridView3;
+            this.gvEnivosHoras.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.gvEnivosHoras.Name = "gvEnivosHoras";
+            this.gvEnivosHoras.Size = new System.Drawing.Size(420, 164);
+            this.gvEnivosHoras.TabIndex = 6;
+            this.gvEnivosHoras.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView3});
+            // 
+            // gridView3
+            // 
+            this.gridView3.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gv_colDian,
+            this.gv_colDiaNom,
+            this.gv_colHora,
+            this.gv_colreporteenvi,
+            this.gv_colreporte,
+            this.gv_colundnegocio});
+            this.gridView3.GridControl = this.gvEnivosHoras;
+            this.gridView3.Name = "gridView3";
+            this.gridView3.OptionsView.ShowGroupPanel = false;
+            // 
+            // gv_colDian
+            // 
+            this.gv_colDian.Caption = "c_dia";
+            this.gv_colDian.FieldName = "c_dia";
+            this.gv_colDian.Name = "gv_colDian";
+            // 
+            // gv_colDiaNom
+            // 
+            this.gv_colDiaNom.Caption = "Dia";
+            this.gv_colDiaNom.FieldName = "c_diaNom";
+            this.gv_colDiaNom.Name = "gv_colDiaNom";
+            this.gv_colDiaNom.Visible = true;
+            this.gv_colDiaNom.VisibleIndex = 0;
+            // 
+            // gv_colHora
+            // 
+            this.gv_colHora.Caption = "Hora";
+            this.gv_colHora.FieldName = "c_hora";
+            this.gv_colHora.Name = "gv_colHora";
+            this.gv_colHora.Visible = true;
+            this.gv_colHora.VisibleIndex = 1;
+            // 
+            // gv_colreporteenvi
+            // 
+            this.gv_colreporteenvi.Caption = "CodRep";
+            this.gv_colreporteenvi.FieldName = "c_reporteenvio";
+            this.gv_colreporteenvi.Name = "gv_colreporteenvi";
+            // 
+            // gv_colreporte
+            // 
+            this.gv_colreporte.Caption = "Reporte";
+            this.gv_colreporte.FieldName = "c_descripcion";
+            this.gv_colreporte.Name = "gv_colreporte";
+            this.gv_colreporte.Visible = true;
+            this.gv_colreporte.VisibleIndex = 2;
+            // 
+            // gv_colundnegocio
+            // 
+            this.gv_colundnegocio.Caption = "Unidad Neg.";
+            this.gv_colundnegocio.FieldName = "c_unidadnegocio";
+            this.gv_colundnegocio.Name = "gv_colundnegocio";
+            this.gv_colundnegocio.Visible = true;
+            this.gv_colundnegocio.VisibleIndex = 3;
+            // 
+            // gvEnviosDelDia
+            // 
+            this.gvEnviosDelDia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.gvEnviosDelDia.Location = new System.Drawing.Point(3, 155);
+            this.gvEnviosDelDia.MainView = this.gridView2;
+            this.gvEnviosDelDia.Name = "gvEnviosDelDia";
+            this.gvEnviosDelDia.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemCheckEdit1});
+            this.gvEnviosDelDia.Size = new System.Drawing.Size(423, 163);
+            this.gvEnviosDelDia.TabIndex = 5;
+            this.gvEnviosDelDia.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
+            // 
+            // gridView2
+            // 
+            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn7,
+            this.gridColumn8,
+            this.gridColumn9,
+            this.gridColumn10});
+            this.gridView2.GridControl = this.gvEnviosDelDia;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "Dia";
+            this.gridColumn7.FieldName = "c_diaNom";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
+            this.gridColumn7.OptionsColumn.ReadOnly = true;
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 0;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "c_diacod";
+            this.gridColumn8.FieldName = "c_dia";
+            this.gridColumn8.Name = "gridColumn8";
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "Hora";
+            this.gridColumn9.DisplayFormat.FormatString = "hh:mm";
+            this.gridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.gridColumn9.FieldName = "c_hora";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 1;
+            // 
+            // gridColumn10
+            // 
+            this.gridColumn10.Caption = "Enviado";
+            this.gridColumn10.ColumnEdit = this.repositoryItemCheckEdit1;
+            this.gridColumn10.FieldName = "c_flagenviado";
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 2;
+            // 
+            // repositoryItemCheckEdit1
+            // 
+            this.repositoryItemCheckEdit1.AutoHeight = false;
+            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+            this.repositoryItemCheckEdit1.ReadOnly = true;
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl5.Appearance.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl5.Location = new System.Drawing.Point(5, 136);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(66, 16);
+            this.labelControl5.TabIndex = 4;
+            this.labelControl5.Text = "Envios del día";
             // 
             // gvEnviosRealizados
             // 
@@ -340,7 +554,7 @@
             this.gvEnviosRealizados.Location = new System.Drawing.Point(3, 0);
             this.gvEnviosRealizados.MainView = this.gridView1;
             this.gvEnviosRealizados.Name = "gvEnviosRealizados";
-            this.gvEnviosRealizados.Size = new System.Drawing.Size(748, 135);
+            this.gvEnviosRealizados.Size = new System.Drawing.Size(858, 135);
             this.gvEnviosRealizados.TabIndex = 0;
             this.gvEnviosRealizados.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -361,25 +575,6 @@
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // Tab2
-            // 
-            this.Tab2.Image = global::ModEnvioCorreo.Properties.Resources.parameters_icn;
-            this.Tab2.Name = "Tab2";
-            this.Tab2.Size = new System.Drawing.Size(754, 293);
-            this.Tab2.Text = "Parametros";
-            // 
-            // btnRefreshGridEnvios
-            // 
-            this.btnRefreshGridEnvios.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRefreshGridEnvios.Image = global::ModEnvioCorreo.Properties.Resources.update_icn;
-            this.btnRefreshGridEnvios.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnRefreshGridEnvios.Location = new System.Drawing.Point(677, 139);
-            this.btnRefreshGridEnvios.Name = "btnRefreshGridEnvios";
-            this.btnRefreshGridEnvios.Size = new System.Drawing.Size(89, 23);
-            this.btnRefreshGridEnvios.TabIndex = 2;
-            this.btnRefreshGridEnvios.Text = "Refrescar";
-            this.btnRefreshGridEnvios.Click += new System.EventHandler(this.btnRefreshGridEnvios_Click);
             // 
             // gridColumn1
             // 
@@ -435,79 +630,333 @@
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 5;
             // 
-            // labelControl5
+            // Tab2
             // 
-            this.labelControl5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.Tab2.Controls.Add(this.gvUsuariosManual);
+            this.Tab2.Controls.Add(this.btnEliminar);
+            this.Tab2.Controls.Add(this.btnAddUsuario);
+            this.Tab2.Controls.Add(this.labelControl10);
+            this.Tab2.Controls.Add(this.gvListaUsuariosRep);
+            this.Tab2.Controls.Add(this.btnModificarReporte);
+            this.Tab2.Controls.Add(this.labelControl8);
+            this.Tab2.Controls.Add(this.gvListaReportes);
+            this.Tab2.Image = global::ModEnvioCorreo.Properties.Resources.parameters_icn;
+            this.Tab2.Name = "Tab2";
+            this.Tab2.Size = new System.Drawing.Size(864, 336);
+            this.Tab2.Text = "Parametros";
+            // 
+            // gvUsuariosManual
+            // 
+            this.gvUsuariosManual.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl5.Appearance.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl5.Location = new System.Drawing.Point(5, 136);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(66, 16);
-            this.labelControl5.TabIndex = 4;
-            this.labelControl5.Text = "Envios del día";
+            this.gvUsuariosManual.Location = new System.Drawing.Point(497, 31);
+            this.gvUsuariosManual.MainView = this.gridView6;
+            this.gvUsuariosManual.Name = "gvUsuariosManual";
+            this.gvUsuariosManual.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemLookUpEdit1});
+            this.gvUsuariosManual.Size = new System.Drawing.Size(362, 302);
+            this.gvUsuariosManual.TabIndex = 13;
+            this.gvUsuariosManual.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView6});
             // 
-            // gvEnviosDelDia
+            // gridView6
             // 
-            this.gvEnviosDelDia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.gvEnviosDelDia.Location = new System.Drawing.Point(3, 155);
-            this.gvEnviosDelDia.MainView = this.gridView2;
-            this.gvEnviosDelDia.Name = "gvEnviosDelDia";
-            this.gvEnviosDelDia.Size = new System.Drawing.Size(360, 163);
-            this.gvEnviosDelDia.TabIndex = 5;
-            this.gvEnviosDelDia.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView2});
+            this.gridView6.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.col_UserEnvio});
+            this.gridView6.GridControl = this.gvUsuariosManual;
+            this.gridView6.Name = "gridView6";
+            this.gridView6.OptionsView.ShowGroupPanel = false;
+            this.gridView6.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView6_CellValueChanged);
+            this.gridView6.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView6_CellValueChanging);
             // 
-            // gridView2
+            // col_UserEnvio
             // 
-            this.gridView2.GridControl = this.gvEnviosDelDia;
-            this.gridView2.Name = "gridView2";
-            this.gridView2.OptionsView.ShowGroupPanel = false;
+            this.col_UserEnvio.Caption = "Usuario Envio";
+            this.col_UserEnvio.ColumnEdit = this.repositoryItemLookUpEdit1;
+            this.col_UserEnvio.FieldName = "c_nombre";
+            this.col_UserEnvio.Name = "col_UserEnvio";
+            this.col_UserEnvio.Visible = true;
+            this.col_UserEnvio.VisibleIndex = 0;
             // 
-            // gvRepEnviados
+            // repositoryItemLookUpEdit1
             // 
-            this.gvRepEnviados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.repositoryItemLookUpEdit1.AutoHeight = false;
+            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
+            this.btnEliminar.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.btnEliminar.Location = new System.Drawing.Point(786, 4);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(73, 23);
+            this.btnEliminar.TabIndex = 12;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnAddUsuario
+            // 
+            this.btnAddUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddUsuario.Image = ((System.Drawing.Image)(resources.GetObject("btnAddUsuario.Image")));
+            this.btnAddUsuario.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.btnAddUsuario.Location = new System.Drawing.Point(711, 4);
+            this.btnAddUsuario.Name = "btnAddUsuario";
+            this.btnAddUsuario.Size = new System.Drawing.Size(69, 23);
+            this.btnAddUsuario.TabIndex = 11;
+            this.btnAddUsuario.Text = "Agregar";
+            this.btnAddUsuario.Click += new System.EventHandler(this.btnAddUsuario_Click);
+            // 
+            // labelControl10
+            // 
+            this.labelControl10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gvRepEnviados.Location = new System.Drawing.Point(376, 154);
-            this.gvRepEnviados.MainView = this.gridView3;
-            this.gvRepEnviados.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
-            this.gvRepEnviados.Name = "gvRepEnviados";
-            this.gvRepEnviados.Size = new System.Drawing.Size(375, 164);
-            this.gvRepEnviados.TabIndex = 6;
-            this.gvRepEnviados.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView3});
+            this.labelControl10.Appearance.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl10.Location = new System.Drawing.Point(609, 7);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(96, 16);
+            this.labelControl10.TabIndex = 10;
+            this.labelControl10.Text = "Usuario Env. Manual";
             // 
-            // gridView3
+            // gvListaUsuariosRep
             // 
-            this.gridView3.GridControl = this.gvRepEnviados;
-            this.gridView3.Name = "gridView3";
-            this.gridView3.OptionsView.ShowGroupPanel = false;
+            this.gvListaUsuariosRep.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.gvListaUsuariosRep.Location = new System.Drawing.Point(1, 192);
+            this.gvListaUsuariosRep.MainView = this.gridView5;
+            this.gvListaUsuariosRep.Name = "gvListaUsuariosRep";
+            this.gvListaUsuariosRep.Size = new System.Drawing.Size(490, 142);
+            this.gvListaUsuariosRep.TabIndex = 7;
+            this.gvListaUsuariosRep.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView5});
             // 
-            // labelControl6
+            // gridView5
             // 
-            this.labelControl6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl6.Appearance.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl6.Location = new System.Drawing.Point(374, 137);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(87, 16);
-            this.labelControl6.TabIndex = 7;
-            this.labelControl6.Text = "Reportes Enviados";
+            this.gridView5.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.col_dia_gvUs,
+            this.col_hora_gvUs,
+            this.col_usuEnv_gvUs,
+            this.col_estado_gvUs,
+            this.col_ultUsuario_gvUs,
+            this.col_UltFechaMod});
+            this.gridView5.GridControl = this.gvListaUsuariosRep;
+            this.gridView5.Name = "gridView5";
+            this.gridView5.OptionsView.ShowGroupPanel = false;
             // 
-            // labelControl7
+            // col_dia_gvUs
             // 
-            this.labelControl7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl7.Appearance.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl7.Location = new System.Drawing.Point(307, 159);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(0, 16);
-            this.labelControl7.TabIndex = 8;
+            this.col_dia_gvUs.Caption = "Dia";
+            this.col_dia_gvUs.FieldName = "c_diaNom";
+            this.col_dia_gvUs.Name = "col_dia_gvUs";
+            this.col_dia_gvUs.OptionsColumn.AllowEdit = false;
+            this.col_dia_gvUs.OptionsColumn.ReadOnly = true;
+            this.col_dia_gvUs.Visible = true;
+            this.col_dia_gvUs.VisibleIndex = 0;
+            this.col_dia_gvUs.Width = 24;
+            // 
+            // col_hora_gvUs
+            // 
+            this.col_hora_gvUs.Caption = "Hora";
+            this.col_hora_gvUs.DisplayFormat.FormatString = "HH:mm";
+            this.col_hora_gvUs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.col_hora_gvUs.FieldName = "d_hora";
+            this.col_hora_gvUs.Name = "col_hora_gvUs";
+            this.col_hora_gvUs.OptionsColumn.AllowEdit = false;
+            this.col_hora_gvUs.OptionsColumn.ReadOnly = true;
+            this.col_hora_gvUs.Visible = true;
+            this.col_hora_gvUs.VisibleIndex = 1;
+            this.col_hora_gvUs.Width = 36;
+            // 
+            // col_usuEnv_gvUs
+            // 
+            this.col_usuEnv_gvUs.Caption = "Usuario Envio";
+            this.col_usuEnv_gvUs.FieldName = "c_usuarioenvio";
+            this.col_usuEnv_gvUs.Name = "col_usuEnv_gvUs";
+            this.col_usuEnv_gvUs.OptionsColumn.AllowEdit = false;
+            this.col_usuEnv_gvUs.OptionsColumn.ReadOnly = true;
+            this.col_usuEnv_gvUs.Visible = true;
+            this.col_usuEnv_gvUs.VisibleIndex = 2;
+            this.col_usuEnv_gvUs.Width = 81;
+            // 
+            // col_estado_gvUs
+            // 
+            this.col_estado_gvUs.Caption = "Estado";
+            this.col_estado_gvUs.FieldName = "c_estado";
+            this.col_estado_gvUs.Name = "col_estado_gvUs";
+            this.col_estado_gvUs.OptionsColumn.AllowEdit = false;
+            this.col_estado_gvUs.OptionsColumn.ReadOnly = true;
+            this.col_estado_gvUs.Visible = true;
+            this.col_estado_gvUs.VisibleIndex = 3;
+            this.col_estado_gvUs.Width = 24;
+            // 
+            // col_ultUsuario_gvUs
+            // 
+            this.col_ultUsuario_gvUs.Caption = "Ult.Usuario";
+            this.col_ultUsuario_gvUs.FieldName = "c_ultimousuario";
+            this.col_ultUsuario_gvUs.Name = "col_ultUsuario_gvUs";
+            this.col_ultUsuario_gvUs.OptionsColumn.AllowEdit = false;
+            this.col_ultUsuario_gvUs.OptionsColumn.ReadOnly = true;
+            this.col_ultUsuario_gvUs.Visible = true;
+            this.col_ultUsuario_gvUs.VisibleIndex = 4;
+            this.col_ultUsuario_gvUs.Width = 40;
+            // 
+            // col_UltFechaMod
+            // 
+            this.col_UltFechaMod.Caption = "Ult.Fecha Mod.";
+            this.col_UltFechaMod.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm";
+            this.col_UltFechaMod.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.col_UltFechaMod.FieldName = "d_ultimafechamodificacion";
+            this.col_UltFechaMod.Name = "col_UltFechaMod";
+            this.col_UltFechaMod.OptionsColumn.AllowEdit = false;
+            this.col_UltFechaMod.OptionsColumn.ReadOnly = true;
+            this.col_UltFechaMod.Visible = true;
+            this.col_UltFechaMod.VisibleIndex = 5;
+            this.col_UltFechaMod.Width = 40;
+            // 
+            // btnModificarReporte
+            // 
+            this.btnModificarReporte.Image = ((System.Drawing.Image)(resources.GetObject("btnModificarReporte.Image")));
+            this.btnModificarReporte.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.btnModificarReporte.Location = new System.Drawing.Point(402, 2);
+            this.btnModificarReporte.Name = "btnModificarReporte";
+            this.btnModificarReporte.Size = new System.Drawing.Size(89, 23);
+            this.btnModificarReporte.TabIndex = 6;
+            this.btnModificarReporte.Text = "Modificar";
+            this.btnModificarReporte.Click += new System.EventHandler(this.btnModificarReporte_Click);
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelControl8.Appearance.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl8.Location = new System.Drawing.Point(3, 2);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(76, 16);
+            this.labelControl8.TabIndex = 5;
+            this.labelControl8.Text = "Reportes Envios";
+            // 
+            // gvListaReportes
+            // 
+            this.gvListaReportes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.gvListaReportes.Location = new System.Drawing.Point(1, 29);
+            this.gvListaReportes.MainView = this.gridView4;
+            this.gvListaReportes.MinimumSize = new System.Drawing.Size(400, 160);
+            this.gvListaReportes.Name = "gvListaReportes";
+            this.gvListaReportes.Size = new System.Drawing.Size(490, 160);
+            this.gvListaReportes.TabIndex = 0;
+            this.gvListaReportes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView4});
+            // 
+            // gridView4
+            // 
+            this.gridView4.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.col_codreporte,
+            this.col_descripcion,
+            this.col_undNeg,
+            this.col_estado,
+            this.col_ultFecha,
+            this.col_ultUsuario,
+            this.col_tipodata});
+            this.gridView4.GridControl = this.gvListaReportes;
+            this.gridView4.Name = "gridView4";
+            this.gridView4.OptionsView.ShowGroupPanel = false;
+            this.gridView4.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView4_FocusedRowChanged);
+            // 
+            // col_codreporte
+            // 
+            this.col_codreporte.Caption = "Cod";
+            this.col_codreporte.FieldName = "c_reporteenvio";
+            this.col_codreporte.Name = "col_codreporte";
+            this.col_codreporte.OptionsColumn.AllowEdit = false;
+            this.col_codreporte.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.col_codreporte.OptionsColumn.ReadOnly = true;
+            this.col_codreporte.Visible = true;
+            this.col_codreporte.VisibleIndex = 0;
+            this.col_codreporte.Width = 26;
+            // 
+            // col_descripcion
+            // 
+            this.col_descripcion.Caption = "Reporte";
+            this.col_descripcion.FieldName = "c_descripcion";
+            this.col_descripcion.Name = "col_descripcion";
+            this.col_descripcion.OptionsColumn.AllowEdit = false;
+            this.col_descripcion.OptionsColumn.ReadOnly = true;
+            this.col_descripcion.Visible = true;
+            this.col_descripcion.VisibleIndex = 1;
+            this.col_descripcion.Width = 100;
+            // 
+            // col_undNeg
+            // 
+            this.col_undNeg.Caption = "Unidad Neg.";
+            this.col_undNeg.FieldName = "c_unidadnegocio";
+            this.col_undNeg.Name = "col_undNeg";
+            this.col_undNeg.OptionsColumn.AllowEdit = false;
+            this.col_undNeg.OptionsColumn.ReadOnly = true;
+            this.col_undNeg.Visible = true;
+            this.col_undNeg.VisibleIndex = 2;
+            this.col_undNeg.Width = 40;
+            // 
+            // col_estado
+            // 
+            this.col_estado.Caption = "Estado";
+            this.col_estado.FieldName = "c_estado";
+            this.col_estado.Name = "col_estado";
+            this.col_estado.OptionsColumn.AllowEdit = false;
+            this.col_estado.OptionsColumn.ReadOnly = true;
+            this.col_estado.Visible = true;
+            this.col_estado.VisibleIndex = 3;
+            this.col_estado.Width = 33;
+            // 
+            // col_ultFecha
+            // 
+            this.col_ultFecha.Caption = "Ult.Fecha Mod.";
+            this.col_ultFecha.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm";
+            this.col_ultFecha.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.col_ultFecha.FieldName = "d_ultimafechamodificacion";
+            this.col_ultFecha.Name = "col_ultFecha";
+            this.col_ultFecha.OptionsColumn.AllowEdit = false;
+            this.col_ultFecha.OptionsColumn.ReadOnly = true;
+            this.col_ultFecha.Visible = true;
+            this.col_ultFecha.VisibleIndex = 4;
+            this.col_ultFecha.Width = 82;
+            // 
+            // col_ultUsuario
+            // 
+            this.col_ultUsuario.Caption = "Ult Usuario";
+            this.col_ultUsuario.FieldName = "c_ultimousuario";
+            this.col_ultUsuario.Name = "col_ultUsuario";
+            this.col_ultUsuario.OptionsColumn.AllowEdit = false;
+            this.col_ultUsuario.OptionsColumn.ReadOnly = true;
+            this.col_ultUsuario.Visible = true;
+            this.col_ultUsuario.VisibleIndex = 5;
+            this.col_ultUsuario.Width = 87;
+            // 
+            // col_tipodata
+            // 
+            this.col_tipodata.Caption = "Tipo Data";
+            this.col_tipodata.FieldName = "c_tipodata";
+            this.col_tipodata.Name = "col_tipodata";
+            // 
+            // btnRefreshGridEnvios
+            // 
+            this.btnRefreshGridEnvios.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefreshGridEnvios.Image = global::ModEnvioCorreo.Properties.Resources.update_icn;
+            this.btnRefreshGridEnvios.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.btnRefreshGridEnvios.Location = new System.Drawing.Point(787, 139);
+            this.btnRefreshGridEnvios.Name = "btnRefreshGridEnvios";
+            this.btnRefreshGridEnvios.Size = new System.Drawing.Size(89, 23);
+            this.btnRefreshGridEnvios.TabIndex = 2;
+            this.btnRefreshGridEnvios.Text = "Refrescar";
+            this.btnRefreshGridEnvios.Click += new System.EventHandler(this.btnRefreshGridEnvios_Click);
             // 
             // WfEnvioAut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(799, 518);
+            this.ClientSize = new System.Drawing.Size(909, 518);
             this.Controls.Add(this.btnRefreshGridEnvios);
             this.Controls.Add(this.TabRep);
             this.Controls.Add(this.groupControl2);
@@ -533,12 +982,22 @@
             this.TabRep.ResumeLayout(false);
             this.Tab1.ResumeLayout(false);
             this.Tab1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvEnviosRealizados)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvEnivosHoras)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvEnviosDelDia)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvRepEnviados)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvEnviosRealizados)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            this.Tab2.ResumeLayout(false);
+            this.Tab2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvUsuariosManual)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvListaUsuariosRep)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvListaReportes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -581,8 +1040,45 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraGrid.GridControl gvRepEnviados;
+        private DevExpress.XtraGrid.GridControl gvEnivosHoras;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn gv_colDian;
+        private DevExpress.XtraGrid.Columns.GridColumn gv_colDiaNom;
+        private DevExpress.XtraGrid.Columns.GridColumn gv_colHora;
+        private DevExpress.XtraGrid.Columns.GridColumn gv_colreporteenvi;
+        private DevExpress.XtraGrid.Columns.GridColumn gv_colreporte;
+        private DevExpress.XtraGrid.Columns.GridColumn gv_colundnegocio;
+        private DevExpress.XtraGrid.GridControl gvListaReportes;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView4;
+        private DevExpress.XtraGrid.Columns.GridColumn col_codreporte;
+        private DevExpress.XtraGrid.Columns.GridColumn col_descripcion;
+        private DevExpress.XtraGrid.Columns.GridColumn col_undNeg;
+        private DevExpress.XtraGrid.Columns.GridColumn col_estado;
+        private DevExpress.XtraGrid.Columns.GridColumn col_ultFecha;
+        private DevExpress.XtraGrid.Columns.GridColumn col_ultUsuario;
+        private DevExpress.XtraEditors.SimpleButton btnModificarReporte;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraGrid.GridControl gvListaUsuariosRep;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
+        private DevExpress.XtraGrid.Columns.GridColumn col_dia_gvUs;
+        private DevExpress.XtraGrid.Columns.GridColumn col_hora_gvUs;
+        private DevExpress.XtraGrid.Columns.GridColumn col_usuEnv_gvUs;
+        private DevExpress.XtraGrid.Columns.GridColumn col_estado_gvUs;
+        private DevExpress.XtraGrid.Columns.GridColumn col_ultUsuario_gvUs;
+        private DevExpress.XtraGrid.Columns.GridColumn col_UltFechaMod;
+        private DevExpress.XtraEditors.SimpleButton btnEliminar;
+        private DevExpress.XtraEditors.SimpleButton btnAddUsuario;
+        private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraGrid.GridControl gvUsuariosManual;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView6;
+        private DevExpress.XtraGrid.Columns.GridColumn col_UserEnvio;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn col_tipodata;
     }
 }
