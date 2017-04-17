@@ -116,6 +116,8 @@ namespace ModEnvioCorreo
             string ls_comp ;
             ls_comp = cboCompania.SelectedValue.ToString() ;
             gvEnviosRealizados.DataSource = env.EnviosRealizados(ls_comp, dt_FEnvioIni, dt_FEnvioFin);
+
+          
         }
 
         private void TabRep_Click(object sender, EventArgs e)
@@ -175,10 +177,37 @@ namespace ModEnvioCorreo
 
             //Envios Horas 
             string ls_hora;
-            ls_hora = txtHora.Text.Substring(1, 5);
+            ls_hora = txtHora.Text;
             gvEnivosHoras.DataSource = env.HorasEnvios(ls_comp, ls_sDia, ls_hora);
+
+
+            if (gridView3.RowCount > 0)
+            {
+                string coReporte = "", CodUsuario = "", Correo ="";
+
+                for (int i = 0; i < gridView3.RowCount; i++)
+                {
+                    CDEnviosAut envioc = new CDEnviosAut();
+                    coReporte = gridView3.GetRowCellValue(i, "c_reporteenvio").ToString();
+                    CodUsuario = gridView3.GetRowCellValue(i, "c_usuarioenvio").ToString();
+                    Correo = envioc.getCorreoUsuario(CodUsuario);
+
+
+                    switch (coReporte)
+                    {
+                        case "28":
+                            Funct_EvnRepCumpleHTML(Correo);
+                            break;
+                    }
+
+
+
+                }
+
+            }
         }
 
+        
         public void CargarGrillaListaReportes()
         {
             CDEnviosAut env = new CDEnviosAut();
@@ -271,35 +300,157 @@ namespace ModEnvioCorreo
 
             int row = gridView4.FocusedRowHandle;
             string codRep, descripcionRep, undNego , tipodata;
-            bool estado;
+            bool estado,envioxusu;
 
             codRep = gridView4.GetRowCellValue(row, "c_reporteenvio").ToString();
             descripcionRep = gridView4.GetRowCellValue(row, "c_descripcion").ToString();
             undNego = gridView4.GetRowCellValue(row, "c_unidadnegocio").ToString();
             tipodata = gridView4.GetRowCellValue(row, "c_tipodata").ToString();
             estado = Convert.ToBoolean(gridView4.GetRowCellValue(row, "c_estado"));
+            envioxusu = Convert.ToBoolean(gridView4.GetRowCellValue(row, "c_flagenvxusu"));
             wf_actReporteEnvio wfact = new wf_actReporteEnvio();
             wfact.txtCod.Text = codRep;
             wfact.txtDescripcion.Text = descripcionRep;
             wfact.undNegocio = undNego;
             wfact.tipodata = tipodata;
             wfact.estado = estado;
+            wfact.Xusuario = envioxusu;
             wfact.comp = cboCompania.SelectedValue.ToString() ;
             wfact.ShowDialog();
         }
 
         private void btnEnvioManual_Click(object sender, EventArgs e)
         {
-            sendEMailThroughOUTLOOK();
-            //Outlook.Application oApp = new Outlook.Application();
-            //CreateSendItem(oApp);
+            int row = -1;
+            string codReporte = "";
+            bool EnvioXusu= false;
+
+            
+
+            if (chkEnvioAutAct.Checked == true)
+            {
+                MessageBox.Show("Primero desactive el envio automatico.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                TabRep.SelectedTabPageIndex = 1;
+                return;
+            }
+
+
+            if (txtPeriodo.Text.Substring(0, 4) != dtFechaManual.Text.ToString().Substring(6, 4) || txtPeriodo.Text.Substring(5, 2) != dtFechaManual.Text.ToString().Substring(3, 2))
+            {
+                MessageBox.Show("La fecha no coincide con  el periodo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                TabRep.SelectedTabPageIndex = 1;
+                return;
+            }
+
+            DialogResult result = MessageBox.Show("¿Esta seguro que quiere realizar el envio manual de correos a los usuarios?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.No)
+            {/**/
+
+                return;
+
+            }
+
+
+            row = gridView4.FocusedRowHandle;
+
+            if (row < 0)
+            {
+                MessageBox.Show("Debe seleccionar un reporte a enviar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                TabRep.SelectedTabPageIndex = 1;
+                return;
+
+            }
+
+            if (gridView6.RowCount <= 0)
+            {
+                MessageBox.Show("Debe ingresar al menos un usuario de envio.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                TabRep.SelectedTabPageIndex = 1;
+                return;
+            }
+
+            if (VerificarUsuariosManuales() == false)
+            {
+                MessageBox.Show("Existen usuario(s) que no ingresaron de forma correcta, verfique por favor.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                TabRep.SelectedTabPageIndex = 1;
+                return;
+
+            }
+
+            codReporte =  gridView4.GetRowCellValue(row, "c_reporteenvio").ToString();
+            EnvioXusu = Convert.ToBoolean(gridView4.GetRowCellValue(row, "c_flagenvxusu"));
+            
+
+            // Seleccionando Reporte //
+            switch (codReporte)
+            {
+                case "28" :
+                    string codUsuario = ""; string Correo="" ;
+                    for (int i = 0; i < gridView6.RowCount; i++)
+                    {
+                        CDEnviosAut ev = new CDEnviosAut();
+                        codUsuario = gridView6.GetRowCellValue(i, "c_nombre").ToString(); ;
+                        Correo = ev.getCorreoUsuario(codUsuario);
+                        Funct_EvnRepCumpleHTML(Correo);
+                    }
+                       
+                    break;
+            }
+
+           
+         
         }
 
-        public void sendEMailThroughOUTLOOK()
+
+
+
+        public bool VerificarUsuariosManuales()
         {
+            bool result = false;
+            string valNombre = "";
+           
+
+            if (gridView6.RowCount > 0)
+            {
+
+                for (int i = 0; i < gridView6.RowCount; i++)
+                {
+                    valNombre = gridView6.GetRowCellValue(i, "c_nombre").ToString();
+
+                    if (valNombre == "")
+                    {
+                        result = false;
+
+                        return false;
+                    }
+
+                    else
+                    {
+                        result = true;
+                    }
+
+                }
+
+            }
+
+
+            return result;
+
+        }
+
+        public void Funct_EvnRepCumpleHTML(string correo)
+        {
+            CDEnviosAut env = new CDEnviosAut();
             int unicode = 0022;
             char character = (char)unicode;
-            string comillas = (Convert.ToChar(39)).ToString();
+
+            string BodyHtml = "", msjResult = "Envio de correos se realizó en forma exitosa.";
+            BodyHtml = BoDyForHtmlMail();
+
+             if (BodyHtml=="NODATA")
+             {
+                 return;
+             }
+
             try
             {
                 // Create the Outlook application.
@@ -310,7 +461,7 @@ namespace ModEnvioCorreo
                 //add the body of the email
                 // string msHTML = "<button type=" + comillas + "button" + comillas + "class=" + comillas + "btn btn-primary" + comillas + ">Prueba</button>";
                 string msHTML = "";
-                msHTML = GetHeaderOrFoodHtml("H") + BoDyForHtmlMail() + GetHeaderOrFoodHtml("F");
+                msHTML = GetHeaderOrFoodHtml("H") + BodyHtml + GetHeaderOrFoodHtml("F");
 
                 oMsg.BodyFormat = OlBodyFormat.olFormatHTML;
                 oMsg.HTMLBody = msHTML;
@@ -320,17 +471,17 @@ namespace ModEnvioCorreo
                 int iPosition = (int)oMsg.Body.Length + 1;
                 int iAttachType = (int)Outlook.OlAttachmentType.olByValue;
                 //now attached the file
-                Outlook.Attachment oAttach = oMsg.Attachments.Add(@"D:\\ImgRepCumple\\img4.jpg", iAttachType, iPosition, sDisplayName);
-                Outlook.Attachment oAttach2 = oMsg.Attachments.Add(@"D:\\ImgRepCumple\\img1.png", iAttachType, iPosition, sDisplayName);
-                Outlook.Attachment oAttach3 = oMsg.Attachments.Add(@"D:\\ImgRepCumple\\img2.png", iAttachType, iPosition, sDisplayName);
-                Outlook.Attachment oAttach4 = oMsg.Attachments.Add(@"D:\\ImgRepCumple\\img3.png", iAttachType, iPosition, sDisplayName);
-                Outlook.Attachment oAttach5 = oMsg.Attachments.Add(@"D:\\ImgRepCumple\\pie.jpg", iAttachType, iPosition, sDisplayName);
+                Outlook.Attachment oAttach = oMsg.Attachments.Add( Constanst.RutaFotosHtml+"img4.jpg", iAttachType, iPosition, sDisplayName);
+                Outlook.Attachment oAttach2 = oMsg.Attachments.Add(Constanst.RutaFotosHtml + "img1.png", iAttachType, iPosition, sDisplayName);
+                Outlook.Attachment oAttach3 = oMsg.Attachments.Add(Constanst.RutaFotosHtml + "img2.png", iAttachType, iPosition, sDisplayName);
+                Outlook.Attachment oAttach4 = oMsg.Attachments.Add(Constanst.RutaFotosHtml + "img3.png", iAttachType, iPosition, sDisplayName);
+                Outlook.Attachment oAttach5 = oMsg.Attachments.Add(Constanst.RutaFotosHtml + "pie.jpg", iAttachType, iPosition, sDisplayName);
                 //Subject line
-                oMsg.Subject = "Feliz Cumpeaños";
+                oMsg.Subject = GetFechaTexto()+ "-" + cboCompania.Text;//Asunto
                 // Add a recipient.
                 Outlook.Recipients oRecips = (Outlook.Recipients)oMsg.Recipients;
                 // Change the recipient in the next line if necessary.
-                Outlook.Recipient oRecip = (Outlook.Recipient)oRecips.Add("dvillanueva@filtroslys.com.pe");
+                Outlook.Recipient oRecip = (Outlook.Recipient)oRecips.Add(correo);
                 oRecip.Resolve();
                 // Send.
                 oMsg.Send();
@@ -342,48 +493,19 @@ namespace ModEnvioCorreo
             }//end of try block
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.Message, "Aviso");
+               
+                msjResult = "Hubo errores en el envio de correos, revisar por favor.";
+               
             }//end of catch
-        }//end of Email Method
 
-        private void CreateSendItem(Outlook.Application OutlookApp)
-        {
-            Outlook.MailItem mail = null;
-            Outlook.Recipients mailRecipients = null;
-            Outlook.Recipient mailRecipient = null;
-            try
+            string resmsjdb = env.InsertarEjecucionEnvio(cboCompania.SelectedValue.ToString(), DateTime.Now, msjResult, Constanst.UsuarioSist, DateTime.Now);
+
+            if (resmsjdb == "OK")
             {
-                mail = OutlookApp.CreateItem(Outlook.OlItemType.olMailItem)
-                as Outlook.MailItem;
-                mail.Subject = "A programatically generated e-mail";
-                mailRecipients = mail.Recipients;
-                mailRecipient = mailRecipients.Add("Eugene Astafiev");
-                mailRecipient.Resolve();
-                if (mailRecipient.Resolved)
-                {
-                    mail.Send();
-                }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show(
-                        "There is no such record in your address book.");
-                }
+                MessageBox.Show("Se realizó el envio de forma correcta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message,
-                    "An exception is occured in the code of add-in.");
-            }
-            finally
-            {
-                if (mailRecipient != null)
-                    Marshal.ReleaseComObject(mailRecipient);
-                if (mailRecipients != null)
-                    Marshal.ReleaseComObject(mailRecipients);
-                if (mail != null)
-                    Marshal.ReleaseComObject(mail);
-            }
-        }
+
+        }//end of Email Method
 
         public string GetHeaderOrFoodHtml(string tipoCadena)
         { 
@@ -394,8 +516,8 @@ namespace ModEnvioCorreo
             string resultHtml = "";
             if (tipoCadena == "H")
             { 
-                string comillas = (Convert.ToChar(34)).ToString();
-                //string imgcab = @""+comillas+"http://100.100.100.237/img4.jpg"+comillas;
+                //string comillas = (Convert.ToChar(34)).ToString();
+               
 
                 resultHtml = "<!DOCTYPE html> " +
                              "<html lang='en'>" +
@@ -465,7 +587,7 @@ namespace ModEnvioCorreo
 
         public string BoDyForHtmlMail()
         {
-            string result = "" , sHeaderFields ="" , sbody ="";
+            string result = "" , sHeaderFields ="" , sbody ="", sPieImg="";
             DateTime ldt_Fecha;
 
             if (chkEnvioAutAct.Checked == true)
@@ -481,7 +603,13 @@ namespace ModEnvioCorreo
 
             DataTable dtHtml = rpt.DataRepCumple(cboCompania.SelectedValue.ToString(), ldt_Fecha, Constanst.UsuarioSist);
 
-            if (dtHtml.Rows.Count > 0)
+            if (dtHtml == null || dtHtml.Rows.Count <= 0)
+            {
+                MessageBox.Show("No se encontro datos para enviar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+            }
+
+            if (dtHtml.Rows.Count > 1 && dtHtml.Columns.Count > 1)
             {
                 string sFlag = "",sNombreCompleto , sArea, sFechaText;
                 sHeaderFields = "<br />" +
@@ -509,7 +637,7 @@ namespace ModEnvioCorreo
                     {
 
                         sbody = sbody + "<tr>" +
-                             "<td  > </td>"+
+                             "<td> </td>"+
                                "<td style = 'border: 1px solid black;font-weight:bold;font-style:italic' >" + sNombreCompleto + "</td>" +
                                "<td  style = 'border: 1px solid black;font-weight:bold;font-style:italic'  >" + sArea + "</td>" +
                                "</tr>";
@@ -517,24 +645,31 @@ namespace ModEnvioCorreo
 
                    
                 }
+                sPieImg = "<tr>" +
+                             "<td> </td>" +
+                             "<td style='text-align:right' > <img  src='cid:pie.jpg'  /> </td>" +
+                             "<td> </td>"+
+                          "</tr>";
+
+
 
                 
 
             }
 
 
-            result = sHeaderFields + sbody + "</table></div>";
-            result = result +  "<div style=' width:100%;'>"+
-            "<img  src='cid:pie.jpg' style=' margin-left:auto ; margin-right:auto;display:block'/>"+
-              " </div>"+
-              "<div style = 'width:100%;background-color:red;color:red; height:30px;margin-top:20px;border-style: solid;border-width:1px' >....</div>";
-                               
-            
+            result = sHeaderFields + sbody + sPieImg+ "</table></div>";
+            result = result + 
+                "<div style = 'width:100%;background-color:red;color:red; height:30px;margin-top:20px;border-style: solid;border-width:1px' >....</div>";
 
+
+            if (dtHtml.Rows.Count == 1 && dtHtml.Columns.Count == 1)
+            {
+                result = "NODATA";
+            }
 
             return result;
         }
-
 
         public string GetCssStyle()
         {

@@ -18,11 +18,36 @@ namespace ModEnvioCorreo
 
         private void barbtnModEnvios_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            
+
             WfEnvioAut wfe = new WfEnvioAut();
             wfe.MdiParent = this;
             wfe.Show();
            
 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MaxmizedFromTray();
+        }
+
+        private void MaxmizedFromTray()
+        {
+           
+           
+
+
+        }
+
+        private void notifyIcon1_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,9 +22,22 @@ namespace CapaData
 
         public SqlConnection conexion()
         {
-            Conn = "data source = ibserver_29; initial catalog = lys; user id = desarrollador2; password = @desit39";
+            Conn = "data source = " + GetCredenciales("Server") + "; initial catalog = " + GetCredenciales("DBase") + "; user id = " + GetCredenciales("UserDB") + "; password =" + GetCredenciales("Password");
             //Conn = Constantes.ConexionString;
             return new SqlConnection(Conn);
+        }
+
+        public string GetCredenciales(string IniName)
+        {   
+            string textresult = "";
+            string pathexec = new FileInfo(Assembly.GetEntryAssembly().Location).Directory.ToString() + "\\config.ini";
+            var ini = new IniFile(pathexec);
+
+            var resultini = ini.Read(IniName, "DATOS");
+
+
+
+            return resultini;       
         }
     }
 }

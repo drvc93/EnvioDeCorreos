@@ -54,6 +54,7 @@
             this.btnGrabar = new DevExpress.XtraEditors.SimpleButton();
             this.cboTipoData = new System.Windows.Forms.ComboBox();
             this.cboUndNeg = new System.Windows.Forms.ComboBox();
+            this.chkXUsuario = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.gvListaUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
@@ -118,7 +119,7 @@
             this.chkEstado.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkEstado.Checked = true;
             this.chkEstado.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkEstado.Location = new System.Drawing.Point(309, 71);
+            this.chkEstado.Location = new System.Drawing.Point(264, 66);
             this.chkEstado.Name = "chkEstado";
             this.chkEstado.Size = new System.Drawing.Size(56, 17);
             this.chkEstado.TabIndex = 8;
@@ -168,6 +169,7 @@
             this.gvListaUsuarios.TabIndex = 12;
             this.gvListaUsuarios.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gvListaUsuarios.Click += new System.EventHandler(this.gvListaUsuarios_Click);
             // 
             // gridView1
             // 
@@ -273,6 +275,7 @@
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 14;
             this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnGrabar
             // 
@@ -299,14 +302,28 @@
             this.cboUndNeg.FormattingEnabled = true;
             this.cboUndNeg.Location = new System.Drawing.Point(88, 65);
             this.cboUndNeg.Name = "cboUndNeg";
-            this.cboUndNeg.Size = new System.Drawing.Size(199, 21);
+            this.cboUndNeg.Size = new System.Drawing.Size(173, 21);
             this.cboUndNeg.TabIndex = 16;
+            // 
+            // chkXUsuario
+            // 
+            this.chkXUsuario.AutoSize = true;
+            this.chkXUsuario.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkXUsuario.Checked = true;
+            this.chkXUsuario.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkXUsuario.Location = new System.Drawing.Point(326, 66);
+            this.chkXUsuario.Name = "chkXUsuario";
+            this.chkXUsuario.Size = new System.Drawing.Size(81, 17);
+            this.chkXUsuario.TabIndex = 17;
+            this.chkXUsuario.Text = "Por Usuario";
+            this.chkXUsuario.UseVisualStyleBackColor = true;
             // 
             // wf_actReporteEnvio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(663, 470);
+            this.Controls.Add(this.chkXUsuario);
             this.Controls.Add(this.cboUndNeg);
             this.Controls.Add(this.cboTipoData);
             this.Controls.Add(this.btnCancelar);
@@ -324,8 +341,11 @@
             this.Controls.Add(this.txtCod);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(491, 509);
+            this.MaximumSize = new System.Drawing.Size(679, 509);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(679, 509);
             this.Name = "wf_actReporteEnvio";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modificar Envio Reporte";
             this.Load += new System.EventHandler(this.wf_actReporteEnvio_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gvListaUsuarios)).EndInit();
@@ -364,5 +384,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit repositoryItemTimeEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn col_flagreg;
+        private System.Windows.Forms.CheckBox chkXUsuario;
     }
 }

@@ -7,6 +7,7 @@ using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.XtraBars.Docking2010.Views.WindowsUI;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using CapaData;
@@ -25,6 +26,7 @@ namespace ModEnvioCorreo
         public string tipodata;
         public bool estado;
         private DataTable dtReportes;
+        public bool Xusuario;
 
         public wf_actReporteEnvio()
         {
@@ -40,6 +42,7 @@ namespace ModEnvioCorreo
             ComboGrillaUsuario();
             ComboGrillaDia();
             chkEstado.Checked = estado;
+            chkXUsuario.Checked = Xusuario;
         }
 
         public void CargarComboTipoData()
@@ -51,7 +54,8 @@ namespace ModEnvioCorreo
                 new { Text = "Excell ASCII", Value = "AS" },
                 new { Text = "Excell DATA", Value = "EX" },
                 new { Text = "Excell PROPIO", Value = "PO" },
-                new { Text = "PLANTILLA WEB", Value = "WB" },
+                new { Text = "PLANTILLA HTML", Value = "HT" },
+               
             };
 
             cboTipoData.DataSource = items;
@@ -124,6 +128,9 @@ namespace ModEnvioCorreo
 
         private void btnGrabar_Click(object sender, EventArgs e)
         {
+
+            
+
             string c_flagreg;
             int contUpdt = 0 ;
             for (int i = 0; i < gridView1.DataRowCount; i++)
@@ -148,11 +155,12 @@ namespace ModEnvioCorreo
                     }
 
                     repus.CReporteenvio = txtCod.Text;
-                    repus.CUltimousuario = "SISTCORREO";
+                    repus.CUltimousuario = Constanst.UsuarioSist;
 
                     if (string.IsNullOrEmpty(gridView1.GetRowCellValue(i, "d_hora").ToString()) == true)
                     {
-                        MessageBox.Show("Falto Ingresar la hora", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        XtraMessageBox.Show("Falto Ingresar la hora", "Aviso", MessageBoxButtons.OK);
+                        //MessageBox.Show("Falto Ingresar la hora", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         gridView1.SelectRow(i);
                         gridView1.FocusedRowHandle = i;
                          
@@ -171,7 +179,12 @@ namespace ModEnvioCorreo
 
             if (contUpdt > 0)
             {
-                MessageBox.Show("Se actualizo correctamente los datos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                XtraMessageBox.Show("Se actualizo correctamente los datos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // MessageBox.Show("Se actualizo correctamente los datos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            else
+            {
                 this.Close();
             }
         }
@@ -230,6 +243,16 @@ namespace ModEnvioCorreo
             {
                 gridView1.DeleteRow(row);
             }
+        }
+
+        private void gvListaUsuarios_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

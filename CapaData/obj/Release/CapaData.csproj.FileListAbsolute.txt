@@ -1,0 +1,7 @@
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaData\bin\Release\CapaData.dll
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaData\bin\Release\CapaData.pdb
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaData\bin\Release\CapaEntidad.dll
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaData\bin\Release\CapaEntidad.pdb
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaData\obj\Release\CapaData.csprojResolveAssemblyReference.cache
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaData\obj\Release\CapaData.dll
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaData\obj\Release\CapaData.pdb

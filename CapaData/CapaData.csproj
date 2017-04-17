@@ -44,6 +44,7 @@
     <Compile Include="CDReporteData.cs" />
     <Compile Include="CDUnidadNegocio.cs" />
     <Compile Include="Conexion.cs" />
+    <Compile Include="IniFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

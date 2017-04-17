@@ -141,6 +141,39 @@ namespace CapaData
          }
 
 
+         public string getCorreoUsuario(string codUsuario)
+         {
+             string correo = "";
+             String sqlSelect = "SELECT IsNull(c_correo,'') c_correo FROM  dbo.ma_usuario where c_codigousuario  = '"+codUsuario+ "'";
+
+             SqlConnection cn = con.conexion();
+             cn.Open();
+             SqlDataAdapter dap = new SqlDataAdapter(sqlSelect, cn);
+             DataTable dt = new DataTable();
+             dap.SelectCommand.CommandType = CommandType.Text;
+
+
+             dap.Fill(dt);
+             cn.Close();
+
+             if (dt != null && dt.Rows.Count > 0)
+             {
+                 
+
+                 for (int i = 0; i < dt.Rows.Count; i++)
+                 {
+
+                     correo = dt.Rows[i]["c_correo"].ToString();
+
+
+                 }
+
+             }
+
+             return correo; 
+         }
+
+
          public string UpdateInsertRepEnvioUs(CERepEnvUsu ru)
          {
              SqlConnection cn = con.conexion();
@@ -160,6 +193,50 @@ namespace CapaData
                  sqlcmd.Parameters.AddWithValue("@Estado", ru.CEstado);
                  sqlcmd.Parameters.AddWithValue("@UltUsuario", ru.CUltimousuario);
                  sqlcmd.Parameters.AddWithValue("@UltFechaMod", ru.DUltimafechamodificacion);
+
+                 int rowsafect = sqlcmd.ExecuteNonQuery();
+                 if (rowsafect > 0)
+                 {
+
+                     result = "OK";
+                 }
+             }
+
+
+
+             catch (SqlException ex)
+             {
+
+
+                 result = ex.Message;
+
+
+             }
+
+             finally
+             {
+                 cn.Close();
+             }
+
+             return result;
+         }
+
+         public string InsertarEjecucionEnvio(string Compania ,DateTime FechaEjecucion ,string Obs ,string UltUsu,DateTime UltFechaMod)
+         {
+             SqlConnection cn = con.conexion();
+             string result = "";
+             SqlCommand sqlcmd = new SqlCommand();
+             sqlcmd.Connection = cn;
+             try
+             {
+                 sqlcmd.CommandText = "SP_CO_INSERTAR_EJECUCION_ENVIO";
+                 sqlcmd.CommandType = CommandType.StoredProcedure;
+                 cn.Open();
+                 sqlcmd.Parameters.AddWithValue("@Compania", Compania);
+                 sqlcmd.Parameters.AddWithValue("@FechaEjecucion", FechaEjecucion);
+                 sqlcmd.Parameters.AddWithValue("@Observacion", Obs);
+                 sqlcmd.Parameters.AddWithValue("@UltUsuario", UltUsu);
+                 sqlcmd.Parameters.AddWithValue("@UltimaFechaMod", UltFechaMod);
 
                  int rowsafect = sqlcmd.ExecuteNonQuery();
                  if (rowsafect > 0)

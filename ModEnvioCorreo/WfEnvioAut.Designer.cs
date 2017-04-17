@@ -58,6 +58,7 @@
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gv_colDian = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gv_colDiaNom = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gv_colHora = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gv_colreporteenvi = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gv_colreporte = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -106,6 +107,7 @@
             this.col_ultUsuario = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_tipodata = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnRefreshGridEnvios = new DevExpress.XtraEditors.SimpleButton();
+            this.col_envioxusu = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtFechaEnvF.Properties.CalendarTimeProperties)).BeginInit();
@@ -419,6 +421,7 @@
             this.gridView3.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gv_colDian,
             this.gv_colDiaNom,
+            this.gridColumn11,
             this.gv_colHora,
             this.gv_colreporteenvi,
             this.gv_colreporte,
@@ -440,6 +443,12 @@
             this.gv_colDiaNom.Name = "gv_colDiaNom";
             this.gv_colDiaNom.Visible = true;
             this.gv_colDiaNom.VisibleIndex = 0;
+            // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "Usuario";
+            this.gridColumn11.FieldName = "c_usuarioenvio";
+            this.gridColumn11.Name = "gridColumn11";
             // 
             // gv_colHora
             // 
@@ -582,8 +591,6 @@
             this.gridColumn1.Caption = "Fecha Ejecuion";
             this.gridColumn1.FieldName = "d_fechaejecucion";
             this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
             this.gridColumn1.Width = 178;
             // 
             // gridColumn2
@@ -592,18 +599,18 @@
             this.gridColumn2.FieldName = "d_fecha";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.VisibleIndex = 0;
             this.gridColumn2.Width = 178;
             // 
             // gridColumn3
             // 
             this.gridColumn3.Caption = "Hora";
-            this.gridColumn3.DisplayFormat.FormatString = "HH:mm:ss";
+            this.gridColumn3.DisplayFormat.FormatString = "HH:mm";
             this.gridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.gridColumn3.FieldName = "d_hora";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.VisibleIndex = 1;
             this.gridColumn3.Width = 148;
             // 
             // gridColumn4
@@ -612,7 +619,7 @@
             this.gridColumn4.FieldName = "c_observacion";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn4.VisibleIndex = 2;
             this.gridColumn4.Width = 120;
             // 
             // gridColumn5
@@ -621,7 +628,7 @@
             this.gridColumn5.FieldName = "c_ultimousuario";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 4;
+            this.gridColumn5.VisibleIndex = 3;
             // 
             // gridColumn6
             // 
@@ -629,7 +636,7 @@
             this.gridColumn6.FieldName = "d_ultimafechamodificacion";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 5;
+            this.gridColumn6.VisibleIndex = 4;
             // 
             // Tab2
             // 
@@ -860,7 +867,8 @@
             this.col_estado,
             this.col_ultFecha,
             this.col_ultUsuario,
-            this.col_tipodata});
+            this.col_tipodata,
+            this.col_envioxusu});
             this.gridView4.GridControl = this.gvListaReportes;
             this.gridView4.Name = "gridView4";
             this.gridView4.OptionsView.ShowGroupPanel = false;
@@ -946,12 +954,18 @@
             this.btnRefreshGridEnvios.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRefreshGridEnvios.Image = global::ModEnvioCorreo.Properties.Resources.update_icn;
             this.btnRefreshGridEnvios.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnRefreshGridEnvios.Location = new System.Drawing.Point(787, 139);
+            this.btnRefreshGridEnvios.Location = new System.Drawing.Point(788, 139);
             this.btnRefreshGridEnvios.Name = "btnRefreshGridEnvios";
             this.btnRefreshGridEnvios.Size = new System.Drawing.Size(89, 23);
             this.btnRefreshGridEnvios.TabIndex = 2;
             this.btnRefreshGridEnvios.Text = "Refrescar";
             this.btnRefreshGridEnvios.Click += new System.EventHandler(this.btnRefreshGridEnvios_Click);
+            // 
+            // col_envioxusu
+            // 
+            this.col_envioxusu.Caption = "Envio x Usuario";
+            this.col_envioxusu.FieldName = "c_flagenvxusu";
+            this.col_envioxusu.Name = "col_envioxusu";
             // 
             // WfEnvioAut
             // 
@@ -1081,5 +1095,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn col_UserEnvio;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn col_tipodata;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
+        private DevExpress.XtraGrid.Columns.GridColumn col_envioxusu;
     }
 }

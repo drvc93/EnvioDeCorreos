@@ -1,0 +1,4 @@
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaEntidad\bin\Release\CapaEntidad.dll
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaEntidad\bin\Release\CapaEntidad.pdb
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaEntidad\obj\Release\CapaEntidad.dll
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaEntidad\obj\Release\CapaEntidad.pdb

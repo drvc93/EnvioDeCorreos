@@ -11,5 +11,6 @@ namespace ModEnvioCorreo
 
          public const string DirectorioCss = "D:\\cssstyle.txt";
          public const string UsuarioSist = "SISTCORREO";
+         public const string RutaFotosHtml = @"D:\\ImgRepCumple\\";
    }
 }
