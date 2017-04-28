@@ -1,0 +1,17 @@
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\bin\x64\Debug\ModEnvioCorreo.exe.config
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\x64\Debug\ModEnvioCorreo.csproj.ResolveComReference.cache
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\bin\x64\Debug\ModEnvioCorreo.exe
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\bin\x64\Debug\ModEnvioCorreo.pdb
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\bin\x64\Debug\CapaData.dll
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\bin\x64\Debug\CapaEntidad.dll
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\bin\x64\Debug\CapaData.pdb
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\bin\x64\Debug\CapaEntidad.pdb
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\x64\Debug\ModEnvioCorreo.csprojResolveAssemblyReference.cache
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\x64\Debug\ModEnvioCorreo.Form1.resources
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\x64\Debug\ModEnvioCorreo.Properties.Resources.resources
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\x64\Debug\ModEnvioCorreo.WfEnvioAut.resources
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\x64\Debug\ModEnvioCorreo.wf_actReporteEnvio.resources
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\x64\Debug\ModEnvioCorreo.csproj.GenerateResource.Cache
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\x64\Debug\ModEnvioCorreo.exe.licenses
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\x64\Debug\ModEnvioCorreo.exe
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\x64\Debug\ModEnvioCorreo.pdb

@@ -19,7 +19,7 @@ namespace CapaData
 
         public DataTable AllCompanias()
         {
-            String selectText = "SELECT	c_Compania , c_Nombres FROM ma_Compania";
+            String selectText = "SELECT	c_Compania , c_Nombres FROM ma_Compania ";
             SqlConnection cn = con.conexion();
             cn.Open();
             SqlDataAdapter dap = new SqlDataAdapter(selectText, cn);

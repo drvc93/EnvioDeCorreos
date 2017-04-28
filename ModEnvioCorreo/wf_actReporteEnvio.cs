@@ -20,6 +20,7 @@ namespace ModEnvioCorreo
     {
         // private bool _inCellValueChanged = false;
         public string codReporte;
+        private DataTable dtOld;
         public string descripcionRep;
         public string comp;
         public string undNegocio;
@@ -27,6 +28,7 @@ namespace ModEnvioCorreo
         public bool estado;
         private DataTable dtReportes;
         public bool Xusuario;
+        public WfEnvioAut wfParent  ;
 
         public wf_actReporteEnvio()
         {
@@ -111,17 +113,20 @@ namespace ModEnvioCorreo
             CDEnviosAut env = new CDEnviosAut();
             dtReportes = env.ListaUsuariosxReporte(comp, txtCod.Text, 2);
             gvListaUsuarios.DataSource = dtReportes;
+            dtOld = dtReportes.Copy();
+            dtOld.AcceptChanges();
         }
 
         private void btnInsertarUs_Click(object sender, EventArgs e)
         { 
             DataRow dr = dtReportes.NewRow();
-            dr[1] = codReporte;
-            dr[2] = "";
-            dr[6] = 1;
-            dr[7] = "SISTCORREO";
-            dr[8] = DateTime.Now.ToString();
-            dr[9] = "N";
+            dr[0] = dtReportes.Rows.Count + 1;
+            dr[2] = codReporte;
+            dr[3] = "";
+            dr[7] = 1;
+            dr[8] = "SISTCORREO";
+            dr[9] = DateTime.Now.ToString();
+            dr[10] = "N";
             dtReportes.Rows.Add(dr);
             dtReportes.AcceptChanges();
         }
@@ -132,11 +137,11 @@ namespace ModEnvioCorreo
             
 
             string c_flagreg;
-            int contUpdt = 0 ;
+            int contUpdt = 0; int gridindex = 0;
             for (int i = 0; i < gridView1.DataRowCount; i++)
             {
                 c_flagreg = gridView1.GetRowCellValue(i, "c_flagReg").ToString() ;
-
+                gridindex = Convert.ToInt32( gridView1.GetRowCellValue(i, "n_index").ToString());
                 if (c_flagreg == "N")
                 {
                     string result = "";
@@ -167,28 +172,69 @@ namespace ModEnvioCorreo
                         return;
                     }
 
+                    if (string.IsNullOrEmpty(gridView1.GetRowCellValue(i, "c_usuarioenvio").ToString()) == true)
+                    {
+                        XtraMessageBox.Show("Falto Ingresar la el usuario.", "Aviso", MessageBoxButtons.OK);
+                        //MessageBox.Show("Falto Ingresar la hora", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        gridView1.SelectRow(i);
+                        gridView1.FocusedRowHandle = i;
+
+                        return;
+                    }
+
                     repus.DHora = Convert.ToDateTime(gridView1.GetRowCellValue(i, "d_hora"));
                     repus.DUltimafechamodificacion = DateTime.Now;
-                    result = env.UpdateInsertRepEnvioUs(repus);
+                    result = env.UpdateInsertRepEnvioUs(repus,GetOldUs(gridindex));
                     if (result == "OK")
                     {
                         contUpdt = contUpdt + 1;
                     }
                 }
             }
+            string xUpdate = UpdateCab();
 
             if (contUpdt > 0)
             {
                 XtraMessageBox.Show("Se actualizo correctamente los datos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 // MessageBox.Show("Se actualizo correctamente los datos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CDEnviosAut env = new CDEnviosAut();
+                wfParent.gvListaUsuariosRep.DataSource = env.ListaUsuariosxReporte(comp, txtCod.Text, 1); 
+                wfParent.CargarGrillaListaReportes();
                 this.Close();
             }
             else
             {
+                wfParent.CargarGrillaListaReportes();
                 this.Close();
             }
+
+            
         }
 
+        public string UpdateCab()
+        {
+            CDEnviosAut env = new CDEnviosAut();
+            string estado = "" , EnvioXUsu = "" ;
+
+            if(chkEstado.Checked == true )
+            {
+                estado = "A";
+            }
+            else {
+                estado = "I";
+            }
+
+            if (chkXUsuario.Checked == true){
+                EnvioXUsu = "S";
+            }
+            else {
+                EnvioXUsu = "N";
+            }
+
+            string res = env.UpdateReporteCab(comp, txtCod.Text, estado, EnvioXUsu);
+
+            return res;
+        }
         private void gridView1_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
         {
         }
@@ -253,6 +299,35 @@ namespace ModEnvioCorreo
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+
+        public CERepEnvUsu GetOldUs(int rowindex)
+        {
+            CERepEnvUsu ressult = new CERepEnvUsu();
+            ressult.DHora = DateTime.Now;
+            ressult.CCompania = "";
+            ressult.CReporteenvio = "";
+            ressult.CDia = "";
+            ressult.CUsuarioenvio = "";
+            int nIndex = 0 ;
+            for (int i = 0; i < dtOld.Rows.Count; i++)
+            {
+                nIndex = Convert.ToInt32(dtOld.Rows[i]["n_index"]);
+
+                if (nIndex == rowindex)
+                {
+                    ressult.CCompania = dtOld.Rows[i]["c_compania"].ToString();
+                    ressult.CReporteenvio = dtOld.Rows[i]["c_reporteenvio"].ToString();
+                    ressult.CDia = dtOld.Rows[i]["c_dia"].ToString();
+                    ressult.DHora = Convert.ToDateTime(dtOld.Rows[i]["d_hora"]);
+                    ressult.CUsuarioenvio = dtOld.Rows[i]["c_usuarioenvio"].ToString();
+                    break;
+                }
+
+            }
+
+            return ressult;
         }
     }
 }

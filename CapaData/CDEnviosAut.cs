@@ -174,7 +174,7 @@ namespace CapaData
          }
 
 
-         public string UpdateInsertRepEnvioUs(CERepEnvUsu ru)
+         public string UpdateInsertRepEnvioUs(CERepEnvUsu ru , CERepEnvUsu oldus)
          {
              SqlConnection cn = con.conexion();
              string result = "";
@@ -193,6 +193,11 @@ namespace CapaData
                  sqlcmd.Parameters.AddWithValue("@Estado", ru.CEstado);
                  sqlcmd.Parameters.AddWithValue("@UltUsuario", ru.CUltimousuario);
                  sqlcmd.Parameters.AddWithValue("@UltFechaMod", ru.DUltimafechamodificacion);
+                 sqlcmd.Parameters.AddWithValue("@CompaniaOld", oldus.CCompania);
+                 sqlcmd.Parameters.AddWithValue("@ReporteEnvioOld", oldus.CReporteenvio);
+                 sqlcmd.Parameters.AddWithValue("@DiaOld", oldus.CDia);
+                 sqlcmd.Parameters.AddWithValue("@HoraOld", oldus.DHora);
+                 sqlcmd.Parameters.AddWithValue("@UsuarioEnvioOld", oldus.CUsuarioenvio);
 
                  int rowsafect = sqlcmd.ExecuteNonQuery();
                  if (rowsafect > 0)
@@ -310,6 +315,51 @@ namespace CapaData
              return result;
          }
 
+
+         public string UpdateReporteCab(string Compania , string Reporte , string Estado , string EnvioXUsuario)
+         {
+             SqlConnection cn = con.conexion();
+             string result = "";
+             SqlCommand sqlcmd = new SqlCommand();
+             sqlcmd.Connection = cn;
+             try
+             {
+                 sqlcmd.CommandText = "SP_CO_UPDATEREP_CAB";
+                 sqlcmd.CommandType = CommandType.StoredProcedure;
+                 cn.Open();
+                 sqlcmd.Parameters.AddWithValue("@Compania",  Compania);
+                 sqlcmd.Parameters.AddWithValue("@Reporte", Reporte);
+                 sqlcmd.Parameters.AddWithValue("@Estado", Estado);
+                 sqlcmd.Parameters.AddWithValue("@EnvioXusuario",EnvioXUsuario);
+            
+
+                 int rowsafect = sqlcmd.ExecuteNonQuery();
+                 if (rowsafect > 0)
+                 {
+
+                     result = "OK";
+                 }
+             }
+
+
+
+             catch (SqlException ex)
+             {
+
+
+                 result = ex.Message;
+
+
+             }
+
+             finally
+             {
+                 cn.Close();
+             }
+
+             return result;
+
+         }
 
 
         

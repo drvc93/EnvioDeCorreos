@@ -5,18 +5,24 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using CapaData;
 using CapaEntidad;
 using DevExpress.XtraEditors.Repository;
 using Microsoft.Office.Interop.Outlook;
 using Outlook = Microsoft.Office.Interop.Outlook;
+using System.Reflection;
+using DevExpress.XtraEditors;
+using System.ComponentModel;
 
 namespace ModEnvioCorreo
 {
     public partial class WfEnvioAut : DevExpress.XtraEditors.XtraForm
     {
+        public string sTipoEnvio = "", sMsgEnvio = "";
         DataTable dtUsuariosManual = new DataTable();
+        List<string> lstReportesEnv = new List<string>();
 
         public WfEnvioAut()
         {
@@ -57,6 +63,7 @@ namespace ModEnvioCorreo
         private void timer1_Tick(object sender, EventArgs e)
         {
             txtHora.Text = DateTime.Now.ToString("HH:mm:ss");
+            txtFechaAut.Text = DateTime.Now.ToShortDateString();
             CargarGrillaDiaEnvios();
         }
 
@@ -83,9 +90,11 @@ namespace ModEnvioCorreo
             KeyValuePair<string, string> listValue2 = new KeyValuePair<string, string>("Martes", "2MA");
             KeyValuePair<string, string> listValue3 = new KeyValuePair<string, string>("Miercoles", "3MI");
             KeyValuePair<string, string> listValue4 = new KeyValuePair<string, string>("Jueves", "4JU");
-            KeyValuePair<string, string> listValue5 = new KeyValuePair<string, string>("Virnes", "5VI");
+            KeyValuePair<string, string> listValue5 = new KeyValuePair<string, string>("Viernes", "5VI");
             KeyValuePair<string, string> listValue6 = new KeyValuePair<string, string>("Sabado", "6SA");
             KeyValuePair<string, string> listValue7 = new KeyValuePair<string, string>("Domingo", "7DO");
+            KeyValuePair<string, string> listValue8 = new KeyValuePair<string, string>("Todos", "%");
+            cboDia.Items.Add(listValue8);
             cboDia.Items.Add(listValue1);
             cboDia.Items.Add(listValue2);
             cboDia.Items.Add(listValue3);
@@ -93,8 +102,11 @@ namespace ModEnvioCorreo
             cboDia.Items.Add(listValue5);
             cboDia.Items.Add(listValue6);
             cboDia.Items.Add(listValue7);
+            
             cboDia.DisplayMember = "Key";
             cboDia.ValueMember = "Value";
+
+            cboDia.SelectedText = "Todos";
         }
 
         public void CargarGrillaEnviosAut()
@@ -116,8 +128,6 @@ namespace ModEnvioCorreo
             string ls_comp ;
             ls_comp = cboCompania.SelectedValue.ToString() ;
             gvEnviosRealizados.DataSource = env.EnviosRealizados(ls_comp, dt_FEnvioIni, dt_FEnvioFin);
-
-          
         }
 
         private void TabRep_Click(object sender, EventArgs e)
@@ -180,34 +190,87 @@ namespace ModEnvioCorreo
             ls_hora = txtHora.Text;
             gvEnivosHoras.DataSource = env.HorasEnvios(ls_comp, ls_sDia, ls_hora);
 
-
             if (gridView3.RowCount > 0)
             {
-                string coReporte = "", CodUsuario = "", Correo ="";
+                // LoadReportesEnviados();
+                string coReporte = "", CodUsuario = "", Correo = "";
+                bool EnvxUS = false;
 
                 for (int i = 0; i < gridView3.RowCount; i++)
                 {
-                    CDEnviosAut envioc = new CDEnviosAut();
                     coReporte = gridView3.GetRowCellValue(i, "c_reporteenvio").ToString();
                     CodUsuario = gridView3.GetRowCellValue(i, "c_usuarioenvio").ToString();
-                    Correo = envioc.getCorreoUsuario(CodUsuario);
-
+                    Correo = gridView3.GetRowCellValue(i, "c_correo").ToString();
+                    EnvxUS = Convert.ToBoolean(gridView3.GetRowCellValue(i, "c_flagenvxusu"));
 
                     switch (coReporte)
                     {
                         case "28":
-                            Funct_EvnRepCumpleHTML(Correo);
+
+                            if (EnvxUS == true)
+                            { 
+                                Funct_EvnRepCumpleHTML(Correo, "AUT");
+                            }
+                            else
+                            {
+                                if (VerificarReporteAutEnviado(coReporte) == false)
+                                {
+                                    Funct_EvnRepCumpleHTML(CorreosEnvio(coReporte), "AUT");
+                                    lstReportesEnv.Add(coReporte);
+                                }
+                            }
                             break;
                     }
 
-
-
+                    {
+                    }
                 }
 
+                lstReportesEnv.Clear();
+                System.Threading.Thread.Sleep(1000);
             }
         }
 
-        
+        public bool VerificarReporteAutEnviado(string reporte)
+        {
+            bool result = false;
+            string var = "";
+            for (int i = 0; i < lstReportesEnv.Count; i++)
+            {
+                var = lstReportesEnv.ElementAt(i);
+
+                if (var == reporte)
+                {
+                    return true;
+                    break;
+                }
+                else
+                {
+                    result = false;
+                }
+            }
+
+            return result;
+        }
+
+        public List<CEUsuarioCorreo> CorreosEnvio(string rep)
+        {
+            List<CEUsuarioCorreo> lstcorreos = new List<CEUsuarioCorreo>();
+            string correo = "", usuario = "";
+
+            for (int i = 0; i < gridView3.RowCount; i++)
+            {
+                if (gridView3.GetRowCellValue(i, "c_reporteenvio").ToString() == rep)
+                {
+                    correo = gridView3.GetRowCellValue(i, "c_correo").ToString();
+                    usuario = gridView3.GetRowCellValue(i, "c_usuarioenvio").ToString();
+                    lstcorreos.Add(new CEUsuarioCorreo(usuario,correo));
+                }
+            }
+
+            return lstcorreos;
+        }
+
         public void CargarGrillaListaReportes()
         {
             CDEnviosAut env = new CDEnviosAut();
@@ -316,16 +379,16 @@ namespace ModEnvioCorreo
             wfact.estado = estado;
             wfact.Xusuario = envioxusu;
             wfact.comp = cboCompania.SelectedValue.ToString() ;
+            wfact.wfParent = this;
             wfact.ShowDialog();
         }
 
         private void btnEnvioManual_Click(object sender, EventArgs e)
         {
+            sTipoEnvio = "M";
             int row = -1;
             string codReporte = "";
-            bool EnvioXusu= false;
-
-            
+            bool EnvioXusu = false;
 
             if (chkEnvioAutAct.Checked == true)
             {
@@ -334,84 +397,215 @@ namespace ModEnvioCorreo
                 return;
             }
 
-
-            if (txtPeriodo.Text.Substring(0, 4) != dtFechaManual.Text.ToString().Substring(6, 4) || txtPeriodo.Text.Substring(5, 2) != dtFechaManual.Text.ToString().Substring(3, 2))
+            if (chkEnvioAtodo.Checked == true)
             {
-                MessageBox.Show("La fecha no coincide con  el periodo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                TabRep.SelectedTabPageIndex = 1;
-                return;
+                row = gridView4.FocusedRowHandle;
+                codReporte = gridView4.GetRowCellValue(row, "c_reporteenvio").ToString();
+                
+                switch (codReporte)
+                {
+                    case "28" :
+                        string diavalue = "", shora = "", sCorreoUs = ""; 
+                        if (gridView5.RowCount <= 0)
+                        {
+                            XtraMessageBox.Show("No se encontro usuarios con envio automatico.", "Aviso", MessageBoxButtons.OK);
+                            return;
+                        }
+                        else
+                        {
+                            diavalue = cboDia.Text;
+                            shora = dtHoraManual.Text;
+                            DataTable dtUsers = gvListaUsuariosRep.DataSource as DataTable;
+                            DateTime dthora = DateTime.Now;
+                            string sDiaRow = "",sHormin = "";
+                            int rowfocus = gridView4.FocusedRowHandle;
+                            EnvioXusu = Convert.ToBoolean(gridView4.GetRowCellValue(rowfocus, "c_flagenvxusu"));
+
+                            if (diavalue != "Todos")
+                            {
+                                for (int i = 0; i < dtUsers.Rows.Count; i++)
+                                {
+                                    dthora = Convert.ToDateTime(dtUsers.Rows[i]["d_hora"]);
+                                    sDiaRow = dtUsers.Rows[i]["c_diaNom"].ToString();
+
+                                    if (diavalue.ToUpper() != sDiaRow)
+                                    {
+                                        dtUsers.Rows[i].Delete();
+                                    }
+                                }
+
+                                dtUsers.AcceptChanges();
+                            }
+
+                            if (shora != "00:00")
+                            {
+                                for (int i = 0; i < dtUsers.Rows.Count; i++)
+                                {
+                                    dthora = Convert.ToDateTime(dtUsers.Rows[i]["d_hora"]);
+                                    sDiaRow = dtUsers.Rows[i]["c_diaNom"].ToString();
+                                    sHormin = dthora.ToString("HH:mm");
+
+                                    if (shora != sHormin)
+                                    {
+                                        dtUsers.Rows[i].Delete();
+                                    }
+                                }
+                                dtUsers.AcceptChanges();
+                            }
+
+                            if (dtUsers.Rows.Count > 0)
+                            {
+                                if (ValidarExistaData() == "OK")
+                                {
+                                    if (EnvioXusu == true)
+                                    { 
+                                        DataView view = new DataView(dtUsers);
+                                        DataTable distinctValues = view.ToTable(true, "c_correo");
+                                        for (int i = 0; i < distinctValues.Rows.Count; i++)
+                                        {
+                                            sCorreoUs = distinctValues.Rows[i]["c_correo"].ToString();
+                                            Funct_EvnRepCumpleHTML(sCorreoUs, "MAN");
+                                        }
+                                        if (sMsgEnvio == "OK")
+                                        {
+                                            XtraMessageBox.Show("Se realizó el envio de forma correcta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            sMsgEnvio = "";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        List<CEUsuarioCorreo> lst = new List<CEUsuarioCorreo>();
+
+                                        for (int i = 0; i < dtUsers.Rows.Count; i++)
+                                        {
+                                            sCorreoUs = dtUsers.Rows[i]["c_correo"].ToString();
+                                            lst.Add(new CEUsuarioCorreo("", sCorreoUs));
+                                        }
+
+                                        Funct_EvnRepCumpleHTML(lst, "MAN");
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No se encontro datos para enviar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                            }
+                            else if (dtUsers.Rows.Count <= 0)
+                            {
+                                XtraMessageBox.Show("No se encontro usuarios con envio automatico.", "Aviso", MessageBoxButtons.OK);
+                            }
+
+                            string ls_codrep;
+                            CDEnviosAut env = new CDEnviosAut();
+                            ls_codrep = gridView4.GetDataRow(gridView4.FocusedRowHandle)["c_reporteenvio"].ToString();
+                            gvListaUsuariosRep.DataSource = env.ListaUsuariosxReporte(cboCompania.SelectedValue.ToString(), ls_codrep, 1); 
+                        }
+                        break;
+                }
             }
-
-            DialogResult result = MessageBox.Show("¿Esta seguro que quiere realizar el envio manual de correos a los usuarios?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result == DialogResult.No)
-            {/**/
-
-                return;
-
-            }
-
-
-            row = gridView4.FocusedRowHandle;
-
-            if (row < 0)
+            else
             {
-                MessageBox.Show("Debe seleccionar un reporte a enviar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                TabRep.SelectedTabPageIndex = 1;
-                return;
+                if (txtPeriodo.Text.Substring(0, 4) != dtFechaManual.Text.ToString().Substring(6, 4) || txtPeriodo.Text.Substring(5, 2) != dtFechaManual.Text.ToString().Substring(3, 2))
+                {
+                    MessageBox.Show("La fecha no coincide con  el periodo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    TabRep.SelectedTabPageIndex = 1;
+                    return;
+                }
 
-            }
+                DialogResult result = MessageBox.Show("¿Esta seguro que quiere realizar el envio manual de correos a los usuarios?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.No)
+                { /**/
+                    return;
+                }
 
-            if (gridView6.RowCount <= 0)
-            {
-                MessageBox.Show("Debe ingresar al menos un usuario de envio.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                TabRep.SelectedTabPageIndex = 1;
-                return;
-            }
+                row = gridView4.FocusedRowHandle;
 
-            if (VerificarUsuariosManuales() == false)
-            {
-                MessageBox.Show("Existen usuario(s) que no ingresaron de forma correcta, verfique por favor.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                TabRep.SelectedTabPageIndex = 1;
-                return;
+                if (row < 0)
+                {
+                    MessageBox.Show("Debe seleccionar un reporte a enviar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    TabRep.SelectedTabPageIndex = 1;
+                    return;
+                }
 
-            }
+                if (gridView6.RowCount <= 0)
+                {
+                    MessageBox.Show("Debe ingresar al menos un usuario de envio.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    TabRep.SelectedTabPageIndex = 1;
+                    return;
+                }
 
-            codReporte =  gridView4.GetRowCellValue(row, "c_reporteenvio").ToString();
-            EnvioXusu = Convert.ToBoolean(gridView4.GetRowCellValue(row, "c_flagenvxusu"));
-            
+                if (VerificarUsuariosManuales() == false)
+                {
+                    MessageBox.Show("Existen usuario(s) que no ingresaron de forma correcta, verfique por favor.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    TabRep.SelectedTabPageIndex = 1;
+                    return;
+                }
 
-            // Seleccionando Reporte //
-            switch (codReporte)
-            {
-                case "28" :
-                    string codUsuario = ""; string Correo="" ;
-                    for (int i = 0; i < gridView6.RowCount; i++)
-                    {
-                        CDEnviosAut ev = new CDEnviosAut();
-                        codUsuario = gridView6.GetRowCellValue(i, "c_nombre").ToString(); ;
-                        Correo = ev.getCorreoUsuario(codUsuario);
-                        Funct_EvnRepCumpleHTML(Correo);
-                    }
+                codReporte = gridView4.GetRowCellValue(row, "c_reporteenvio").ToString();
+                EnvioXusu = Convert.ToBoolean(gridView4.GetRowCellValue(row, "c_flagenvxusu"));
+
+                // Seleccionando Reporte //
+                switch (codReporte)
+                {
+                    case "28" :
+                        string codUsuario = "";
+                        string Correo = "" ;
+                        if (EnvioXusu == true)
+                        {
+                            string msjValidar = ValidarExistaData();
+                            if (msjValidar == "OK")
+                            {
+                                for (int i = 0; i < gridView6.RowCount; i++)
+                                {
+                                    CDEnviosAut ev = new CDEnviosAut();
+                                    codUsuario = gridView6.GetRowCellValue(i, "c_nombre").ToString();
+                                    ;
+                                    Correo = ev.getCorreoUsuario(codUsuario);
+                                    Funct_EvnRepCumpleHTML(Correo, "MAN");
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se encontro datos para enviar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+
+                            if (sMsgEnvio == "OK")
+                            {
+                                XtraMessageBox.Show("Se realizó el envio de forma correcta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                sMsgEnvio = "";
+                            }
+                        }
+                        else
+                        {
+                            List<CEUsuarioCorreo> lst = new List<CEUsuarioCorreo>();
+                            for (int i = 0; i < gridView6.RowCount; i++)
+                            {
+                                CDEnviosAut ev = new CDEnviosAut();
+                                codUsuario = gridView6.GetRowCellValue(i, "c_nombre").ToString();
+                                ;
+                                Correo = ev.getCorreoUsuario(codUsuario);
+                                CEUsuarioCorreo c = new CEUsuarioCorreo(codUsuario, Correo);
+                                lst.Add(c);
+                            }
+
+                            if (lst.Count > 0)
+                            {
+                                Funct_EvnRepCumpleHTML(lst, "MAN");
+                            }
+                        }
                        
-                    break;
+                        break;
+                }
             }
-
-           
-         
         }
-
-
-
 
         public bool VerificarUsuariosManuales()
         {
             bool result = false;
             string valNombre = "";
-           
 
             if (gridView6.RowCount > 0)
             {
-
                 for (int i = 0; i < gridView6.RowCount; i++)
                 {
                     valNombre = gridView6.GetRowCellValue(i, "c_nombre").ToString();
@@ -422,22 +616,17 @@ namespace ModEnvioCorreo
 
                         return false;
                     }
-
                     else
                     {
                         result = true;
                     }
-
                 }
-
             }
 
-
             return result;
-
         }
 
-        public void Funct_EvnRepCumpleHTML(string correo)
+        public void Funct_EvnRepCumpleHTML(List<CEUsuarioCorreo> listUser, string TipoEnvio)
         {
             CDEnviosAut env = new CDEnviosAut();
             int unicode = 0022;
@@ -446,17 +635,33 @@ namespace ModEnvioCorreo
             string BodyHtml = "", msjResult = "Envio de correos se realizó en forma exitosa.";
             BodyHtml = BoDyForHtmlMail();
 
-             if (BodyHtml=="NODATA")
-             {
-                 return;
-             }
+            if (BodyHtml == "NODATA")
+            {
+                return;
+            }
 
             try
             {
-                // Create the Outlook application.
-                Outlook.Application oApp = new Outlook.Application();
-                // Create a new mail item.
-                Outlook.MailItem oMsg = (Outlook.MailItem)oApp.CreateItem(Outlook.OlItemType.olMailItem);
+                System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName("OUTLOOK");
+
+                int collCount = processes.Length;
+
+                Microsoft.Office.Interop.Outlook.Application oApp;
+
+                if (collCount != 0)
+                {
+                    //  capturar instancia outlook
+                    oApp = Marshal.GetActiveObject("Outlook.Application") as Outlook.Application;
+                }
+                else
+                {
+                   
+                    oApp = new Microsoft.Office.Interop.Outlook.Application();
+                }
+            
+                Microsoft.Office.Interop.Outlook.MailItem oMsg = oApp.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem);
+                Outlook.Inspector oInspector = oMsg.GetInspector;
+                
                 // Set HTMLBody. 
                 //add the body of the email
                 // string msHTML = "<button type=" + comillas + "button" + comillas + "class=" + comillas + "btn btn-primary" + comillas + ">Prueba</button>";
@@ -466,87 +671,172 @@ namespace ModEnvioCorreo
                 oMsg.BodyFormat = OlBodyFormat.olFormatHTML;
                 oMsg.HTMLBody = msHTML;
                 oMsg.Save();
-              
+
                 String sDisplayName = "MyAttachment";
                 int iPosition = (int)oMsg.Body.Length + 1;
                 int iAttachType = (int)Outlook.OlAttachmentType.olByValue;
-                //now attached the file
-                Outlook.Attachment oAttach = oMsg.Attachments.Add( Constanst.RutaFotosHtml+"img4.jpg", iAttachType, iPosition, sDisplayName);
-                Outlook.Attachment oAttach2 = oMsg.Attachments.Add(Constanst.RutaFotosHtml + "img1.png", iAttachType, iPosition, sDisplayName);
-                Outlook.Attachment oAttach3 = oMsg.Attachments.Add(Constanst.RutaFotosHtml + "img2.png", iAttachType, iPosition, sDisplayName);
-                Outlook.Attachment oAttach4 = oMsg.Attachments.Add(Constanst.RutaFotosHtml + "img3.png", iAttachType, iPosition, sDisplayName);
-                Outlook.Attachment oAttach5 = oMsg.Attachments.Add(Constanst.RutaFotosHtml + "pie.jpg", iAttachType, iPosition, sDisplayName);
-                //Subject line
-                oMsg.Subject = GetFechaTexto()+ "-" + cboCompania.Text;//Asunto
-                // Add a recipient.
-                Outlook.Recipients oRecips = (Outlook.Recipients)oMsg.Recipients;
-                // Change the recipient in the next line if necessary.
-                Outlook.Recipient oRecip = (Outlook.Recipient)oRecips.Add(correo);
-                oRecip.Resolve();
+                
+            
+                Outlook.Attachment oAttach4 = oMsg.Attachments.Add(GetRutaImg() + "img3.png", iAttachType, iPosition, sDisplayName);
+               
+                
+                oMsg.Subject = "HOY " + GetFechaTexto() + " DILE FELIZ CUMPLEAÑOS A ...";// ASUNTO
+                listUser = ValidarCorreosRepetidos(listUser);
+
+                for (int j = 0; j < listUser.Count; j++)
+                {
+                    CEUsuarioCorreo us = listUser.ElementAt(j);
+                   
+                    Outlook.Recipients oRecips = (Outlook.Recipients)oMsg.Recipients;
+                    
+                    Outlook.Recipient oRecip = (Outlook.Recipient)oRecips.Add(us.CCorreo);
+                    oRecip.Resolve();
+                }
                 // Send.
+                //oMsg.Display();
                 oMsg.Send();
-                // Clean up.
-                oRecip = null;
-                oRecips = null;
+               
                 oMsg = null;
                 oApp = null;
-            }//end of try block
+            }
             catch (System.Exception ex)
             {
-               
                 msjResult = "Hubo errores en el envio de correos, revisar por favor.";
-               
-            }//end of catch
+                if (TipoEnvio == "MAN")
+                {
+                    msjResult = "Hubo errores en el envio de correos, revisar por favor.";
+                    XtraMessageBox.Show(msjResult + " (" + ex.Message + ").", "Aviso", MessageBoxButtons.OK);
+                    return;
+                }
+            }
 
             string resmsjdb = env.InsertarEjecucionEnvio(cboCompania.SelectedValue.ToString(), DateTime.Now, msjResult, Constanst.UsuarioSist, DateTime.Now);
 
             if (resmsjdb == "OK")
             {
-                MessageBox.Show("Se realizó el envio de forma correcta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (TipoEnvio == "MAN")
+                {
+                    XtraMessageBox.Show("Se realizó el envio de forma correcta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        public void Funct_EvnRepCumpleHTML(string correo, string TipoEnvio)
+        {
+            CDEnviosAut env = new CDEnviosAut();
+            int unicode = 0022;
+            char character = (char)unicode;
+
+            string BodyHtml = "", msjResult = "Envio de correos se realizó en forma exitosa.";
+            BodyHtml = BoDyForHtmlMail();
+
+            if (BodyHtml == "NODATA")
+            {
+                return;
             }
 
-        }//end of Email Method
+            try
+            {
+                System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName("OUTLOOK");
+
+                int collCount = processes.Length;
+
+                Microsoft.Office.Interop.Outlook.Application oApp;
+
+                if (collCount != 0)
+                {
+                    // Capturar instancia de outlook
+                    oApp = Marshal.GetActiveObject("Outlook.Application") as Outlook.Application;
+                }
+                else
+                {
+                    
+                    oApp = new Microsoft.Office.Interop.Outlook.Application();
+                }
+                Outlook.MailItem oMsg = (Outlook.MailItem)oApp.CreateItem(Outlook.OlItemType.olMailItem);
+                Outlook.Inspector oInspector = oMsg.GetInspector;
+               
+                string msHTML = "";
+                msHTML = GetHeaderOrFoodHtml("H") + BodyHtml + GetHeaderOrFoodHtml("F");
+
+                oMsg.BodyFormat = OlBodyFormat.olFormatHTML;
+                oMsg.HTMLBody = msHTML;
+                oMsg.Save();
+              
+                String sDisplayName = "Correo";
+                int iPosition = (int)oMsg.Body.Length + 1;
+                int iAttachType = (int)Outlook.OlAttachmentType.olByValue;
+                 
+                
+                Outlook.Attachment oAttach4 = oMsg.Attachments.Add(GetRutaImg() + "img3.png", iAttachType, iPosition, sDisplayName);
+              
+              
+                oMsg.Subject = "HOY " + GetFechaTexto() + " DILE FELIZ CUMPLEAÑOS A ...";// + cboCompania.Text;//Asunto
+               
+                Outlook.Recipients oRecips = (Outlook.Recipients)oMsg.Recipients;
+              
+                Outlook.Recipient oRecip = (Outlook.Recipient)oRecips.Add(correo);
+                oRecip.Resolve();
+                
+                oMsg.Send();
+               
+                oRecip = null;
+                oRecips = null;
+                oMsg = null;
+                oApp = null;
+            }
+            catch (System.Exception ex)
+            {
+                if (TipoEnvio == "MAN")
+                {
+                    msjResult = "Hubo errores en el envio de correos, revisar por favor.";
+                    XtraMessageBox.Show(msjResult + " (" + ex.Message + ").", "Aviso", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+
+            string resmsjdb = env.InsertarEjecucionEnvio(cboCompania.SelectedValue.ToString(), DateTime.Now, msjResult, Constanst.UsuarioSist, DateTime.Now);
+
+            if (resmsjdb == "OK")
+            {
+                if (TipoEnvio == "MAN")
+                {
+                    sMsgEnvio = "OK";
+                    //XtraMessageBox.Show("Se realizó el envio de forma correcta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // MessageBox.Show("Se realizó el envio de forma correcta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
 
         public string GetHeaderOrFoodHtml(string tipoCadena)
         { 
             string style = "", sFechaTexto;
             sFechaTexto = GetFechaTexto();
-            //style = GetCssStyle();
 
             string resultHtml = "";
             if (tipoCadena == "H")
             { 
-                //string comillas = (Convert.ToChar(34)).ToString();
-               
-
                 resultHtml = "<!DOCTYPE html> " +
                              "<html lang='en'>" +
                              "<head>" +
-                             "<title>Bootstrap Example</title>" +
+                             "<title>FELIZ CUMPLEAÑOS</title>" +
                              "<style>" +
-                            // GetCssStyle()+
+                             // GetCssStyle()+
                              "</style>" +
                              "<meta charset='utf-8'>" +
                              "</head>" +
                              "<body   style ='width:500px' >" +
                              "<div style=' width:600px ; height:100%;'> " +
-                             "<div style=' width:50% ; height:50px;'> " +
+                             /* "<div style=' width:50% ; height:50px;'> " +
                            
                              "<img  height='50px' width='600px' src='cid:img4.jpg'/>" +
-                             "</div>" +
+                             "</div>" +*/
 
-                           " <div>"+
-                                "<table style='width:500px' >"+
-                                    "<tr>"+
-                                        "<th> <img  src='cid:img3.png'  width='100px'  /> </th>" +
-                                        "<th> <img  src='cid:img1.png'   width='350px' style='margin-left:15px'  /> </th>" +
-                                        "<th> <img  src='cid:img2.png'  width='150px' style='margin-left:15px'  /> </th>" +
-                                    "</tr>"+
-                               " </table>"+
-                            "</div>"+
-
-                             "<div  style='background-color:red;height:50px; width:100%;color:white;font:bold;font-size:35px;font-family:Cambria;font-style:italic;text-align:center;border-style: solid;border-width:1px'>" +
-                             GetFechaTexto()+
+                             " <div style='height:50px; width:600px;' >" +
+                             " <img   src='cid:img3.png' style='height:50px; width:600px;' />" +
+                             "</div><br>" +
+                             "<div  style='background-color:#e30019;height:50px; width:100%;color:white;font:bold;font-size:35px;font-family:Calibri;font-style:italic;text-align:center;'>" +
+                             "!FELIZ CUMPLEAÑOS¡" +
                              "</div>";
             }
 
@@ -566,9 +856,7 @@ namespace ModEnvioCorreo
             if (chkEnvioAutAct.Checked == true)
             {
                 ldt_Fecha = Convert.ToDateTime(txtFechaAut.Text);
-
             }
-
             else
             {
                 ldt_Fecha = Convert.ToDateTime(dtFechaManual.Text);
@@ -577,17 +865,46 @@ namespace ModEnvioCorreo
             ls_NomDia = ldt_Fecha.ToString("dddd");
             ls_NomMes = ldt_Fecha.ToString("MMMMMMMMMMMMMMMM");
 
-            result = "¡FELIZ CUMPLEAÑOS! " + ls_NomDia + " " + Convert.ToString(ldt_Fecha.Day) + " DE " + ls_NomMes + " DEL " + Convert.ToString(ldt_Fecha.Year);
+            result = ls_NomDia + " " + Convert.ToString(ldt_Fecha.Day) + " DE " + ls_NomMes + " DEL " + Convert.ToString(ldt_Fecha.Year);
 
             result = result.ToUpper();
 
             return result;
+        }
 
+        public string ValidarExistaData()
+        {
+            string result = "", sHeaderFields = "", sbody = "", sPieImg = "";
+            DateTime ldt_Fecha;
+
+            if (chkEnvioAutAct.Checked == true)
+            {
+                ldt_Fecha = Convert.ToDateTime(txtFechaAut.Text);
+            }
+            else
+            {
+                ldt_Fecha = Convert.ToDateTime(dtFechaManual.Text);
+            }
+
+            CDReporteData rpt = new CDReporteData();
+
+            DataTable dtHtml = rpt.DataRepCumple(cboCompania.SelectedValue.ToString(), ldt_Fecha, Constanst.UsuarioSist);
+
+            if (dtHtml.Rows.Count == 1 && dtHtml.Columns.Count == 1)
+            {
+                result = "NO";
+            }
+            else if (dtHtml.Rows.Count > 1 && dtHtml.Columns.Count > 1)
+            {
+                result = "OK";
+            }
+
+            return result;
         }
 
         public string BoDyForHtmlMail()
         {
-            string result = "" , sHeaderFields ="" , sbody ="", sPieImg="";
+            string result = "" , sHeaderFields = "" , sbody = "", sPieImg = "";
             DateTime ldt_Fecha;
 
             if (chkEnvioAutAct.Checked == true)
@@ -605,8 +922,6 @@ namespace ModEnvioCorreo
 
             if (dtHtml == null || dtHtml.Rows.Count <= 0)
             {
-                MessageBox.Show("No se encontro datos para enviar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
             }
 
             if (dtHtml.Rows.Count > 1 && dtHtml.Columns.Count > 1)
@@ -616,10 +931,10 @@ namespace ModEnvioCorreo
                                 "<div>" +
                                 "<table style= 'width:100%;border-collapse: collapse;' >" +
                                 "<tr  >" +
-                                     "<th style='color:white;background-color:red;font-family:Cambria;width:100px; font-size:15px;border-style: solid;border-width:1px'  > DIA </th>" +
-                                     "<th style='color:white;background-color:red;font-family:Cambria;width:300px;font-size:15px;border-style: solid;border-width:1px'> NOMBRE COMPLETO </th>" +
-                                    " <th style='color:white;background-color:red;font-family:Cambria;width:300px;font-size:15px;border-style: solid;border-width:1px'> AREA </th>" +
-                              " </tr>";
+                                "<th style='color:white;background-color:#e30019;font-family:Calibri;width:100px; font-size:15px;font-style:italic'  > DÍA </th>" +
+                                "<th style='color:white;background-color:#e30019;font-family:Calibri;width:300px;font-size:15px;font-style:italic'> NOMBRE COMPLETO </th>" +
+                                " <th style='color:white;background-color:#e30019;font-family:Calibri;width:300px;font-size:15px;font-style:italic'> ÁREA </th>" +
+                                " </tr>";
                 for (int i = 0; i < dtHtml.Rows.Count; i++)
                 {
                     sFlag = dtHtml.Rows[i]["c_flag"].ToString().Substring(8, 1);
@@ -630,38 +945,28 @@ namespace ModEnvioCorreo
                     if (sFlag == "A")
                     {
                         sbody = sbody + "<tr>" +
-                                "<td colspan='3' style ='color:red;font-size:20px;font-family:Cambria;font-weight:bold;font-style:italic;padding-top:5px;padding-bottom:5px' >" + sFechaText + "</td>" +
+                                "<td colspan='3' style ='color:#e30019;font-size:20px;font-family:Calibri;font-weight:bold;padding-top:5px;padding-bottom:5px' >" + sFechaText + "</td>" +
                                 "</tr>";
                     }
                     else if (sFlag == "B")
                     {
-
                         sbody = sbody + "<tr>" +
-                             "<td> </td>"+
-                               "<td style = 'border: 1px solid black;font-weight:bold;font-style:italic' >" + sNombreCompleto + "</td>" +
-                               "<td  style = 'border: 1px solid black;font-weight:bold;font-style:italic'  >" + sArea + "</td>" +
-                               "</tr>";
+                                "<td> </td>" +
+                                "<td style = 'font-weight:bold;font-family:Calibri;color:#6D6D6D' >" + sNombreCompleto + "</td>" +
+                                "<td  style = 'font-weight:bold;font-family:Calibri;color:#6D6D6D'  >" + sArea + "</td>" +
+                                "</tr>";
                     }
-
-                   
                 }
-                sPieImg = "<tr>" +
-                             "<td> </td>" +
-                             "<td style='text-align:right' > <img  src='cid:pie.jpg'  /> </td>" +
-                             "<td> </td>"+
-                          "</tr>";
-
-
-
-                
-
+                /* sPieImg = "<tr>" +
+                "<td> </td>" +
+                "<td style='text-align:right' > <img  src='cid:pie.jpg'  /> </td>" +
+                "<td> </td>"+
+                "</tr>";*/
             }
 
-
-            result = sHeaderFields + sbody + sPieImg+ "</table></div>";
-            result = result + 
-                "<div style = 'width:100%;background-color:red;color:red; height:30px;margin-top:20px;border-style: solid;border-width:1px' >....</div>";
-
+            result = sHeaderFields + sbody + "</table></div>";
+            result = result +
+                     "<div style = 'width:100%;background-color:#e30019;color:#e30019; height:30px;margin-top:20px;' >....</div>";
 
             if (dtHtml.Rows.Count == 1 && dtHtml.Columns.Count == 1)
             {
@@ -671,17 +976,49 @@ namespace ModEnvioCorreo
             return result;
         }
 
-        public string GetCssStyle()
+        public string GetRutaImg()
         {
-            string text;
-            var fileStream = new FileStream(Constanst.DirectorioCss, FileMode.Open, FileAccess.Read);
-            using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
+            string textresult = "";
+            string pathexec = new FileInfo(Assembly.GetEntryAssembly().Location).Directory.ToString() + "\\config.ini";
+            var ini = new IniFile(pathexec);
+
+            var resultini = ini.Read("RUTAIMG", "DATOS");
+
+            return resultini;
+        }
+
+        public List<CEUsuarioCorreo> ValidarCorreosRepetidos(List<CEUsuarioCorreo> lst_us)
+        {
+            string sCorreoM = "";  
+            int cont = 0 ;
+            List<CEUsuarioCorreo> ls_result = new List<CEUsuarioCorreo>();
+
+            DataView view = new DataView(ConvertToDataTable(lst_us));
+            DataTable distinctValues = view.ToTable(true, "CCorreo");
+
+            for (int i = 0; i < distinctValues.Rows.Count; i++)
             {
-                text = streamReader.ReadToEnd();
+                ls_result.Add(new CEUsuarioCorreo("",distinctValues.Rows[i]["CCorreo"].ToString()));
             }
 
-            
-            return text;
+            return ls_result;
+        }
+
+        public DataTable ConvertToDataTable<T>(IList<T> data)
+        {
+            PropertyDescriptorCollection properties =
+                TypeDescriptor.GetProperties(typeof(T));
+            DataTable table = new DataTable();
+            foreach (PropertyDescriptor prop in properties)
+                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+            foreach (T item in data)
+            {
+                DataRow row = table.NewRow();
+                foreach (PropertyDescriptor prop in properties)
+                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+                table.Rows.Add(row);
+            }
+            return table;
         }
     }
 }

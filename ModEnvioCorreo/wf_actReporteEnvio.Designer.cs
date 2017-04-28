@@ -41,6 +41,7 @@
             this.btnEliminarUsuario = new DevExpress.XtraEditors.SimpleButton();
             this.gvListaUsuarios = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.col_index = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_diaNom = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.col_hora = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -174,6 +175,7 @@
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.col_index,
             this.col_diaNom,
             this.col_hora,
             this.col_estado,
@@ -187,6 +189,15 @@
             this.gridView1.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanging);
             this.gridView1.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView1_RowUpdated);
             // 
+            // col_index
+            // 
+            this.col_index.Caption = "#";
+            this.col_index.FieldName = "n_index";
+            this.col_index.Name = "col_index";
+            this.col_index.Visible = true;
+            this.col_index.VisibleIndex = 0;
+            this.col_index.Width = 20;
+            // 
             // col_diaNom
             // 
             this.col_diaNom.Caption = "Dia";
@@ -194,7 +205,8 @@
             this.col_diaNom.FieldName = "c_dia";
             this.col_diaNom.Name = "col_diaNom";
             this.col_diaNom.Visible = true;
-            this.col_diaNom.VisibleIndex = 0;
+            this.col_diaNom.VisibleIndex = 1;
+            this.col_diaNom.Width = 99;
             // 
             // repositoryItemLookUpEdit1
             // 
@@ -212,7 +224,8 @@
             this.col_hora.FieldName = "d_hora";
             this.col_hora.Name = "col_hora";
             this.col_hora.Visible = true;
-            this.col_hora.VisibleIndex = 1;
+            this.col_hora.VisibleIndex = 2;
+            this.col_hora.Width = 99;
             // 
             // repositoryItemTimeEdit1
             // 
@@ -228,7 +241,8 @@
             this.col_estado.FieldName = "c_estado";
             this.col_estado.Name = "col_estado";
             this.col_estado.Visible = true;
-            this.col_estado.VisibleIndex = 5;
+            this.col_estado.VisibleIndex = 6;
+            this.col_estado.Width = 105;
             // 
             // col_usuarioenv
             // 
@@ -237,7 +251,8 @@
             this.col_usuarioenv.FieldName = "c_usuarioenvio";
             this.col_usuarioenv.Name = "col_usuarioenv";
             this.col_usuarioenv.Visible = true;
-            this.col_usuarioenv.VisibleIndex = 2;
+            this.col_usuarioenv.VisibleIndex = 3;
+            this.col_usuarioenv.Width = 99;
             // 
             // col_ultusuario
             // 
@@ -247,7 +262,8 @@
             this.col_ultusuario.OptionsColumn.AllowEdit = false;
             this.col_ultusuario.OptionsColumn.ReadOnly = true;
             this.col_ultusuario.Visible = true;
-            this.col_ultusuario.VisibleIndex = 3;
+            this.col_ultusuario.VisibleIndex = 4;
+            this.col_ultusuario.Width = 99;
             // 
             // col_ultfecha
             // 
@@ -259,7 +275,8 @@
             this.col_ultfecha.OptionsColumn.AllowEdit = false;
             this.col_ultfecha.OptionsColumn.ReadOnly = true;
             this.col_ultfecha.Visible = true;
-            this.col_ultfecha.VisibleIndex = 4;
+            this.col_ultfecha.VisibleIndex = 5;
+            this.col_ultfecha.Width = 99;
             // 
             // col_flagreg
             // 
@@ -385,5 +402,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit repositoryItemTimeEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn col_flagreg;
         private System.Windows.Forms.CheckBox chkXUsuario;
+        private DevExpress.XtraGrid.Columns.GridColumn col_index;
     }
 }

@@ -42,6 +42,7 @@
     <Compile Include="CEDiaRepAuto.cs" />
     <Compile Include="CERepEnvUsu.cs" />
     <Compile Include="CEUsuario.cs" />
+    <Compile Include="CEUsuarioCorreo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
