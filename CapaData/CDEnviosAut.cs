@@ -213,7 +213,8 @@ namespace CapaData
              {
 
 
-                 result = ex.Message;
+                 result = Convert.ToString(ex.ErrorCode);
+                 
 
 
              }

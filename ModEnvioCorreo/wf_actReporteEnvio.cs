@@ -183,11 +183,18 @@ namespace ModEnvioCorreo
                     }
 
                     repus.DHora = Convert.ToDateTime(gridView1.GetRowCellValue(i, "d_hora"));
+                    repus.DHora = Convert.ToDateTime( "1900-01-01 "+ repus.DHora.ToString("HH:mm"));
+
                     repus.DUltimafechamodificacion = DateTime.Now;
                     result = env.UpdateInsertRepEnvioUs(repus,GetOldUs(gridindex));
                     if (result == "OK")
                     {
                         contUpdt = contUpdt + 1;
+                    }
+                    else if ( result == "-2146232060")
+                    {
+                        XtraMessageBox.Show("No se puede ingresar un registro duplicado.", "Aviso", MessageBoxButtons.OK);
+                        return;
                     }
                 }
             }

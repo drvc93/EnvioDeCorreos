@@ -49,5 +49,10 @@ namespace ModEnvioCorreo
         {
             
         }
+
+        private void xtraTabbedMdiManager1_PageAdded(object sender, DevExpress.XtraTabbedMdi.MdiTabPageEventArgs e)
+        {
+            
+        }
     }
 }
