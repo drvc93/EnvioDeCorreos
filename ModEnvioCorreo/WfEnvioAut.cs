@@ -541,6 +541,12 @@ namespace ModEnvioCorreo
                     return;
                 }
 
+                if (ValidarExistaData() != "OK")
+                {
+                    XtraMessageBox.Show("No se encontro registros para enviar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
                 codReporte = gridView4.GetRowCellValue(row, "c_reporteenvio").ToString();
                 EnvioXusu = Convert.ToBoolean(gridView4.GetRowCellValue(row, "c_flagenvxusu"));
 
@@ -978,7 +984,7 @@ namespace ModEnvioCorreo
 
         public string GetRutaImg()
         {
-            string textresult = "";
+            //string textresult = "";
             string pathexec = new FileInfo(Assembly.GetEntryAssembly().Location).Directory.ToString() + "\\config.ini";
             var ini = new IniFile(pathexec);
 
@@ -990,7 +996,7 @@ namespace ModEnvioCorreo
         public List<CEUsuarioCorreo> ValidarCorreosRepetidos(List<CEUsuarioCorreo> lst_us)
         {
             string sCorreoM = "";  
-            int cont = 0 ;
+           // int cont = 0 ;
             List<CEUsuarioCorreo> ls_result = new List<CEUsuarioCorreo>();
 
             DataView view = new DataView(ConvertToDataTable(lst_us));
