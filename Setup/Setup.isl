@@ -342,8 +342,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{F00CDDEA-A0D1-4571-A4C4-6E972883547B}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{6F7D837E-C2FE-48EE-A5D2-66D64D7D510D}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT2</td><td>{1A778E27-9436-4AE7-9BCD-1D50BDF450A0}</td><td>IMGREPCUMPLE</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>ModEnvioCorreo.exe</td><td>{9DDD11EA-24F3-4FAC-8C02-228DCEB1A4DE}</td><td>INSTALLDIR</td><td>2</td><td/><td>modenviocorreo.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>ModEnvioCorreo.exe1</td><td>{1A942A87-4927-4A4D-9FDF-E63335921A1F}</td><td>INSTALLDIR</td><td>2</td><td/><td>modenviocorreo.exe1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ModEnvioCorreo.exe</td><td>{DB27B695-3DD7-49D5-99B3-A41ED0184C03}</td><td>INSTALLDIR</td><td>2</td><td/><td>modenviocorreo.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1057,7 +1056,6 @@
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT2</td></row>
 		<row><td>INSTALLDIR</td><td>ModEnvioCorreo.exe</td></row>
-		<row><td>INSTALLDIR</td><td>ModEnvioCorreo.exe1</td></row>
 	</table>
 
 	<table name="CustomAction">
@@ -1179,6 +1177,7 @@
 		<row><td>WindowsFolder</td><td>TARGETDIR</td><td>.:Windows</td><td/><td>0</td><td/></row>
 		<row><td>WindowsVolume</td><td>TARGETDIR</td><td>.:WinRoot</td><td/><td>0</td><td/></row>
 		<row><td>filtro_1.a_filtros_lys_s.a.</td><td>ProgramMenuFolder</td><td>FILTRO~1.A|Filtros LYS S.A.</td><td/><td>1</td><td/></row>
+		<row><td>modulo_1_modulo_envio_correos</td><td>filtro_1.a_filtros_lys_s.a.</td><td>MODULO~1|Modulo Envio Correos</td><td/><td>1</td><td/></row>
 		<row><td>setup</td><td>filtro_1.a_filtros_lys_s.a.</td><td>Setup</td><td/><td>1</td><td/></row>
 	</table>
 
@@ -1875,7 +1874,6 @@
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT2</td></row>
 		<row><td>AlwaysInstall</td><td>ModEnvioCorreo.exe</td></row>
-		<row><td>AlwaysInstall</td><td>ModEnvioCorreo.exe1</td></row>
 	</table>
 
 	<table name="File">
@@ -1891,13 +1889,11 @@
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
 		<row><td>config.ini</td><td>ISX_DEFAULTCOMPONENT</td><td>config.ini</td><td>0</td><td/><td/><td/><td>1</td><td>D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\bin\x86\Debug\config.ini</td><td>1</td><td/></row>
-		<row><td>config.ini1</td><td>ISX_DEFAULTCOMPONENT1</td><td>config.ini</td><td>0</td><td/><td/><td/><td>1</td><td>D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\bin\x86\Debug\config.ini</td><td>1</td><td/></row>
 		<row><td>img1.png</td><td>ISX_DEFAULTCOMPONENT2</td><td>img1.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\ImgRepCumple\img1.png</td><td>1</td><td/></row>
 		<row><td>img2.png</td><td>ISX_DEFAULTCOMPONENT2</td><td>img2.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\ImgRepCumple\img2.png</td><td>1</td><td/></row>
 		<row><td>img3.png</td><td>ISX_DEFAULTCOMPONENT2</td><td>img3.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\ImgRepCumple\img3.png</td><td>1</td><td/></row>
 		<row><td>img4.jpg</td><td>ISX_DEFAULTCOMPONENT2</td><td>img4.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\ImgRepCumple\img4.jpg</td><td>1</td><td/></row>
-		<row><td>modenviocorreo.exe</td><td>ModEnvioCorreo.exe</td><td>MODENV~1.EXE|ModEnvioCorreo.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\bin\x86\Debug\ModEnvioCorreo.exe</td><td>1</td><td/></row>
-		<row><td>modenviocorreo.exe1</td><td>ModEnvioCorreo.exe1</td><td>MODENV~1.EXE|ModEnvioCorreo.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\bin\x86\Debug\ModEnvioCorreo.exe</td><td>1</td><td/></row>
+		<row><td>modenviocorreo.exe</td><td>ModEnvioCorreo.exe</td><td>MODENV~1.EXE|ModEnvioCorreo.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\bin\x86\Debug\ModEnvioCorreo.exe</td><td>1</td><td/></row>
 		<row><td>pie.jpg</td><td>ISX_DEFAULTCOMPONENT2</td><td>pie.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\ImgRepCumple\pie.jpg</td><td>1</td><td/></row>
 	</table>
 
@@ -2043,8 +2039,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_7A3A457E_40B9_4665_9615_A1692EAC791D_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_EC7915DB_C755_4FD9_B01F_4999AB93BDE7_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT2</td><td/><td/><td>_ABABC649_E6B4_4695_B8DA_AF73ED80C659_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>ModEnvioCorreo.exe</td><td/><td/><td>_9FBD0511_A563_410A_BDE6_F4FA2C7F7DDA_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>ModEnvioCorreo.exe1</td><td/><td/><td>_DAD4999B_FCB5_4429_A4DC_380B7317478C_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ModEnvioCorreo.exe</td><td/><td/><td>_7C5CA7F3_6869_446C_B1BE_E5D714752B8B_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -2322,6 +2317,7 @@
 		<col def="S255">Value</col>
 		<col def="S255">TestValue</col>
 		<col def="i4">Type</col>
+		<row><td>CapaEntidad</td><td>CapaEntidad\CapaEntidad.csproj</td><td/><td>2</td></row>
 		<row><td>CommonFilesFolder</td><td/><td/><td>1</td></row>
 		<row><td>ISPROJECTDIR</td><td/><td/><td>1</td></row>
 		<row><td>ISProductFolder</td><td/><td/><td>1</td></row>
@@ -2632,7 +2628,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>Filtros LYS S.A.</td><td>0</td><td/><td>-1843046325</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>Filtros LYS S.A.</td><td>0</td><td/><td>1940214029</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>-1843009493</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>-1843009493</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_OS</td><td>1033</td><td>The operating system is not adequate for running [ProductName].</td><td>0</td><td/><td>-1843009493</td></row>
@@ -3445,6 +3441,7 @@
 		<row><td>IDS_SETUPEXE_EXPIRE_MSG</td><td>1033</td><td>This setup works until %s. The setup will now exit.</td><td>0</td><td/><td>-1843009493</td></row>
 		<row><td>IDS_SETUPEXE_LAUNCH_COND_E</td><td>1033</td><td>This setup was built with an evaluation version of InstallShield and can only be launched from setup.exe.</td><td>0</td><td/><td>-1843009493</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>1033</td><td>Modulo Envio Correos.exe</td><td>0</td><td/><td>-1843056405</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>1033</td><td>LAUNCH~1.EXE|Launch ModEnvioCorreo.exe</td><td>0</td><td/><td>1940222317</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO</td><td>1033</td><td>From the list of servers below, select the database server you would like to target.</td><td>0</td><td/><td>-1843009493</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_DB</td><td>1033</td><td>From the list of catalog names below, select the database catalog you would like to target.</td><td>0</td><td/><td>-1843009493</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_TEMPLATE</td><td>1033</td><td>[IS_SQLBROWSE_INTRO]</td><td>0</td><td/><td>-1843009493</td></row>
@@ -3734,8 +3731,8 @@
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>-1843009493</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>-1843009493</td></row>
 		<row><td>ID_STRING1</td><td>1033</td><td/><td>0</td><td/><td>-1843068853</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>www.filtroslys.com.pe/</td><td>0</td><td/><td>-1843019701</td></row>
-		<row><td>ID_STRING3</td><td>1033</td><td>Filtros LYS S.A.</td><td>0</td><td/><td>-1843046325</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>http://www.FiltrosLYSS.A..com</td><td>0</td><td/><td>1940214029</td></row>
+		<row><td>ID_STRING3</td><td>1033</td><td>Filtros LYS S.A.</td><td>0</td><td/><td>1940214029</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>LAUNCH~1.EXE|Launch ModEnvioCorreo.exe</td><td>0</td><td/><td>-1843031861</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>-1843009493</td></row>
 	</table>
@@ -3852,6 +3849,7 @@
 		<col def="I2">ISIconIndex</col>
 		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\setupicon.ico</td><td>0</td></row>
 		<row><td>ModEnvioCorreo.exe_3AFFE3F1F4D144D9A7A2D1B889C5A0C3.exe</td><td/><td>D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\bin\x86\Debug\ModEnvioCorreo.exe</td><td>0</td></row>
+		<row><td>ModEnvioCorreo.exe_9B8E291B80CB4291A171CB343D077014.exe</td><td/><td>D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\bin\x86\Debug\ModEnvioCorreo.exe</td><td>0</td></row>
 		<row><td>ModEnvioCorreo.exe_A7A248E27FCD46DEBBD087678108924A.exe</td><td/><td>D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\bin\x86\Debug\ModEnvioCorreo.exe</td><td>0</td></row>
 	</table>
 
@@ -4434,9 +4432,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="L255">FileName</col>
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
-		<row><td>FileKey1</td><td>ModEnvioCorreo.exe1</td><td/><td>filtro_1.a_filtros_lys_s.a.</td><td>2</td></row>
-		<row><td>FileKey2</td><td>ModEnvioCorreo.exe1</td><td/><td>setup</td><td>2</td></row>
-		<row><td>ModEnvioCorreo.exe</td><td>ModEnvioCorreo.exe1</td><td/><td>setup</td><td>2</td></row>
+		<row><td>FileKey1</td><td>ModEnvioCorreo.exe</td><td/><td>modulo_1_modulo_envio_correos</td><td>2</td></row>
+		<row><td>ModEnvioCorreo.exe</td><td>ModEnvioCorreo.exe</td><td/><td>modulo_1_modulo_envio_correos</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4522,8 +4519,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>ModEnvioCorreo.exe</td><td>setup</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>ModEnvioCorreo.exe1</td><td>AlwaysInstall</td><td/><td/><td/><td>ModEnvioCorreo.exe_A7A248E27FCD46DEBBD087678108924A.exe</td><td>1</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>ModEnvioCorreo.exe1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>ModEnvioCorreo.exe1</td><td>AlwaysInstall</td><td/><td/><td/><td>ModEnvioCorreo.exe_3AFFE3F1F4D144D9A7A2D1B889C5A0C3.exe</td><td>1</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>ModEnvioCorreo.exe</td><td>modulo_1_modulo_envio_correos</td><td>##IDS_SHORTCUT_DISPLAY_NAME2##</td><td>ModEnvioCorreo.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>ModEnvioCorreo.exe_9B8E291B80CB4291A171CB343D077014.exe</td><td>1</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">

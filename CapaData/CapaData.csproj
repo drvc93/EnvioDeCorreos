@@ -39,10 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CDAccesos.cs" />
+    <Compile Include="CDCliente.cs" />
     <Compile Include="CDCompania.cs" />
     <Compile Include="CDEnviosAut.cs" />
     <Compile Include="CDReporteData.cs" />
     <Compile Include="CDUnidadNegocio.cs" />
+    <Compile Include="CDUsuario.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="IniFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

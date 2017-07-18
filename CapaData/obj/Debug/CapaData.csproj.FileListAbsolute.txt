@@ -5,3 +5,10 @@ D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaData\obj\Debug\CapaData.pd
 D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaData\bin\Debug\CapaEntidad.dll
 D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaData\bin\Debug\CapaEntidad.pdb
 D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaData\obj\Debug\CapaData.csprojResolveAssemblyReference.cache
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\CapaData\bin\Debug\CapaData.dll
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\CapaData\bin\Debug\CapaData.pdb
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\CapaData\bin\Debug\CapaEntidad.dll
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\CapaData\bin\Debug\CapaEntidad.pdb
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\CapaData\obj\Debug\CapaData.csprojResolveAssemblyReference.cache
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\CapaData\obj\Debug\CapaData.dll
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\CapaData\obj\Debug\CapaData.pdb

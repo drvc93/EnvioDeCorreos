@@ -2,3 +2,7 @@ D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaEntidad\bin\Debug\CapaEnti
 D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaEntidad\bin\Debug\CapaEntidad.pdb
 D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaEntidad\obj\Debug\CapaEntidad.dll
 D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaEntidad\obj\Debug\CapaEntidad.pdb
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\CapaEntidad\bin\Debug\CapaEntidad.dll
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\CapaEntidad\bin\Debug\CapaEntidad.pdb
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\CapaEntidad\obj\Debug\CapaEntidad.dll
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\CapaEntidad\obj\Debug\CapaEntidad.pdb

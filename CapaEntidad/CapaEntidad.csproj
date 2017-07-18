@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CEAcceso.cs" />
     <Compile Include="CEDiaRepAuto.cs" />
     <Compile Include="CERepEnvUsu.cs" />
     <Compile Include="CEUsuario.cs" />

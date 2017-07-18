@@ -15,3 +15,24 @@ D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\M
 D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.exe
 D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.pdb
 D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.csprojResolveAssemblyReference.cache
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\bin\x86\Debug\ModEnvioCorreo.exe.config
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.csproj.ResolveComReference.cache
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.exe
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.pdb
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\bin\x86\Debug\ModEnvioCorreo.exe
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\bin\x86\Debug\ModEnvioCorreo.pdb
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\bin\x86\Debug\CapaData.dll
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\bin\x86\Debug\CapaEntidad.dll
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\bin\x86\Debug\CapaData.pdb
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\bin\x86\Debug\CapaEntidad.pdb
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.csprojResolveAssemblyReference.cache
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.Form1.resources
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.Properties.Resources.resources
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.WfEnvioAut.resources
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.wf_actReporteEnvio.resources
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.csproj.GenerateResource.Cache
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.exe.licenses
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.WfCorreoHTML.resources
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.Login.resources
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.WaitForm1.resources
+D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.SplashScreen1.resources

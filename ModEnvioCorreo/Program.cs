@@ -20,7 +20,7 @@ namespace ModEnvioCorreo
 
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
-            Application.Run(new Form1());
+            Application.Run(new Login());
         }
     }
 }

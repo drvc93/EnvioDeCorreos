@@ -29,7 +29,7 @@ namespace CapaData
 
         public string GetCredenciales(string IniName)
         {   
-            string textresult = "";
+            
             string pathexec = new FileInfo(Assembly.GetEntryAssembly().Location).Directory.ToString() + "\\config.ini";
             var ini = new IniFile(pathexec);
 
