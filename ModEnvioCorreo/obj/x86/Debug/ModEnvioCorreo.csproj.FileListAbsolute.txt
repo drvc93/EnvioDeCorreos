@@ -40,3 +40,18 @@ D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x
 =======
 D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.WfCorreoHTML.resources
 >>>>>>> origin/master
+C:\Users\dvillanueva.BRAWNS_LIMA1\Documents\EnvioDeCorreos\ModEnvioCorreo\bin\x86\Debug\ModEnvioCorreo.exe.config
+C:\Users\dvillanueva.BRAWNS_LIMA1\Documents\EnvioDeCorreos\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.csproj.ResolveComReference.cache
+C:\Users\dvillanueva.BRAWNS_LIMA1\Documents\EnvioDeCorreos\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.exe
+C:\Users\dvillanueva.BRAWNS_LIMA1\Documents\EnvioDeCorreos\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.pdb
+C:\Users\dvillanueva.BRAWNS_LIMA1\Documents\EnvioDeCorreos\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.csprojResolveAssemblyReference.cache
+C:\Users\dvillanueva.BRAWNS_LIMA1\Documents\EnvioDeCorreos\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.Form1.resources
+C:\Users\dvillanueva.BRAWNS_LIMA1\Documents\EnvioDeCorreos\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.Login.resources
+C:\Users\dvillanueva.BRAWNS_LIMA1\Documents\EnvioDeCorreos\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.SplashScreen1.resources
+C:\Users\dvillanueva.BRAWNS_LIMA1\Documents\EnvioDeCorreos\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.WaitForm1.resources
+C:\Users\dvillanueva.BRAWNS_LIMA1\Documents\EnvioDeCorreos\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.WfEnvioAut.resources
+C:\Users\dvillanueva.BRAWNS_LIMA1\Documents\EnvioDeCorreos\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.wf_actReporteEnvio.resources
+C:\Users\dvillanueva.BRAWNS_LIMA1\Documents\EnvioDeCorreos\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.csproj.GenerateResource.Cache
+C:\Users\dvillanueva.BRAWNS_LIMA1\Documents\EnvioDeCorreos\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.Properties.Resources.resources
+C:\Users\dvillanueva.BRAWNS_LIMA1\Documents\EnvioDeCorreos\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.WfCorreoHTML.resources
+C:\Users\dvillanueva.BRAWNS_LIMA1\Documents\EnvioDeCorreos\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.exe.licenses

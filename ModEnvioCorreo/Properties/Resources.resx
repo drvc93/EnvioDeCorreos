@@ -154,15 +154,13 @@
   <data name="update_icn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\update_icn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-<<<<<<< HEAD
   <data name="icon_importexcel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_importexcel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LogoLysSA_N1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LogoLysSA_N1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-=======
+  </data>
   <data name="icon_html" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_html.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
->>>>>>> origin/master
   </data>
 </root>

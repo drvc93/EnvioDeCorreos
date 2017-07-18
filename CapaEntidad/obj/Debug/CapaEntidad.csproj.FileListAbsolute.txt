@@ -10,3 +10,8 @@ D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\CapaEntidad\obj\Debu
 =======
 D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\CapaEntidad\obj\Debug\CapaEntidad.csprojResolveAssemblyReference.cache
 >>>>>>> origin/master
+C:\Users\dvillanueva.BRAWNS_LIMA1\Documents\EnvioDeCorreos\CapaEntidad\bin\Debug\CapaEntidad.dll
+C:\Users\dvillanueva.BRAWNS_LIMA1\Documents\EnvioDeCorreos\CapaEntidad\bin\Debug\CapaEntidad.pdb
+C:\Users\dvillanueva.BRAWNS_LIMA1\Documents\EnvioDeCorreos\CapaEntidad\obj\Debug\CapaEntidad.csprojResolveAssemblyReference.cache
+C:\Users\dvillanueva.BRAWNS_LIMA1\Documents\EnvioDeCorreos\CapaEntidad\obj\Debug\CapaEntidad.dll
+C:\Users\dvillanueva.BRAWNS_LIMA1\Documents\EnvioDeCorreos\CapaEntidad\obj\Debug\CapaEntidad.pdb

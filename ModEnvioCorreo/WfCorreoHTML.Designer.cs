@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-<<<<<<< HEAD
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WfCorreoHTML));
             DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup1 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
             DevExpress.XtraRichEdit.Model.BorderInfo borderInfo1 = new DevExpress.XtraRichEdit.Model.BorderInfo();
@@ -484,10 +483,7 @@
             this.setParagraphHeadingLevelItem8 = new DevExpress.XtraRichEdit.UI.SetParagraphHeadingLevelItem();
             this.setParagraphHeadingLevelItem9 = new DevExpress.XtraRichEdit.UI.SetParagraphHeadingLevelItem();
             this.setParagraphHeadingLevelItem10 = new DevExpress.XtraRichEdit.UI.SetParagraphHeadingLevelItem();
-<<<<<<< HEAD
-=======
             this.captionsBar1 = new DevExpress.XtraRichEdit.UI.CaptionsBar();
->>>>>>> origin/master
             this.insertCaptionPlaceholderItem1 = new DevExpress.XtraRichEdit.UI.InsertCaptionPlaceholderItem();
             this.insertFiguresCaptionItems1 = new DevExpress.XtraRichEdit.UI.InsertFiguresCaptionItems();
             this.insertTablesCaptionItems1 = new DevExpress.XtraRichEdit.UI.InsertTablesCaptionItems();
@@ -497,8 +493,7 @@
             this.insertTableOfTablesItems1 = new DevExpress.XtraRichEdit.UI.InsertTableOfTablesItems();
             this.insertTableOfEquationsItems1 = new DevExpress.XtraRichEdit.UI.InsertTableOfEquationsItems();
             this.updateTableOfFiguresItem1 = new DevExpress.XtraRichEdit.UI.UpdateTableOfFiguresItem();
-<<<<<<< HEAD
-=======
+
             this.documentProofingBar1 = new DevExpress.XtraRichEdit.UI.DocumentProofingBar();
             this.checkSpellingItem1 = new DevExpress.XtraRichEdit.UI.CheckSpellingItem();
             this.changeLanguageItem1 = new DevExpress.XtraRichEdit.UI.ChangeLanguageItem();
@@ -840,14 +835,12 @@
             this.richEditControl1.Size = new System.Drawing.Size(892, 262);
             this.richEditControl1.TabIndex = 0;
             this.richEditControl1.Text = "richEditControl1";
->>>>>>> origin/master
             // 
             // barManager1
             // 
             this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-<<<<<<< HEAD
             this.commonBar1,
-=======
+
             this.documentViewsBar1,
             this.showBar1,
             this.zoomBar1,

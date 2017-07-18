@@ -1,5 +1,4 @@
 ﻿using System;
-<<<<<<< HEAD
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -14,7 +13,6 @@ using Microsoft.Office.Interop.Outlook;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using System.Collections.Generic;
 using CapaEntidad;
-=======
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,13 +21,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
->>>>>>> origin/master
 
 namespace ModEnvioCorreo
 {
     public partial class WfCorreoHTML : Form
     {
-<<<<<<< HEAD
         int starindexHtml = 0;
         List<string> lisAdj = new List<string>();
         DataTable dtFiles;
@@ -473,11 +469,6 @@ namespace ModEnvioCorreo
         }
     }
 }
-=======
-        public WfCorreoHTML()
-        {
-            InitializeComponent();
-        }
-    }
-}
->>>>>>> origin/master
+
+        
+
