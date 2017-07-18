@@ -138,6 +138,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< HEAD
     <Compile Include="SplashScreen1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +151,8 @@
     <Compile Include="WaitForm1.Designer.cs">
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </Compile>
+=======
+>>>>>>> origin/master
     <Compile Include="WfCorreoHTML.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,12 +188,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+<<<<<<< HEAD
     <EmbeddedResource Include="SplashScreen1.resx">
       <DependentUpon>SplashScreen1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitForm1.resx">
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </EmbeddedResource>
+=======
+>>>>>>> origin/master
     <EmbeddedResource Include="WfCorreoHTML.resx">
       <DependentUpon>WfCorreoHTML.cs</DependentUpon>
     </EmbeddedResource>
@@ -260,6 +266,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="mod_envio_icn.ico" />
+<<<<<<< HEAD
     <None Include="Resources\LogoLysSA_N1.png" />
     <None Include="Resources\LogoLysSA_N.png" />
     <None Include="Resources\icon_ruler20.png" />
@@ -268,6 +275,8 @@
     <None Include="Resources\icon_add2.png" />
     <None Include="Resources\icon_add.png" />
     <None Include="Resources\icon_load.png" />
+=======
+>>>>>>> origin/master
     <None Include="Resources\icon_html.png" />
   </ItemGroup>
   <ItemGroup>

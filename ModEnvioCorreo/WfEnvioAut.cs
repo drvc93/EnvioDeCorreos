@@ -995,7 +995,11 @@ namespace ModEnvioCorreo
 
         public List<CEUsuarioCorreo> ValidarCorreosRepetidos(List<CEUsuarioCorreo> lst_us)
         {
+<<<<<<< HEAD
               
+=======
+            string sCorreoM = "";  
+>>>>>>> origin/master
            // int cont = 0 ;
             List<CEUsuarioCorreo> ls_result = new List<CEUsuarioCorreo>();
 

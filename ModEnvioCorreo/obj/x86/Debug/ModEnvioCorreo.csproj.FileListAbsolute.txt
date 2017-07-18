@@ -15,6 +15,7 @@ D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\M
 D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.exe
 D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.pdb
 D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.csprojResolveAssemblyReference.cache
+<<<<<<< HEAD
 D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\bin\x86\Debug\ModEnvioCorreo.exe.config
 D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.csproj.ResolveComReference.cache
 D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.exe
@@ -36,3 +37,6 @@ D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x
 D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.Login.resources
 D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.WaitForm1.resources
 D:\DVILLANUEVA\Envio Correos Ver. Julio 2017\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.SplashScreen1.resources
+=======
+D:\DVILLANUEVA\ProyectoEnvioCorreo\ModEnvioCorreo\ModEnvioCorreo\obj\x86\Debug\ModEnvioCorreo.WfCorreoHTML.resources
+>>>>>>> origin/master

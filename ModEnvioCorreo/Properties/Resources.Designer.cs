@@ -63,6 +63,7 @@ namespace ModEnvioCorreo.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+<<<<<<< HEAD
         internal static System.Drawing.Bitmap icon_add {
             get {
                 object obj = ResourceManager.GetObject("icon_add", resourceCulture);
@@ -93,6 +94,8 @@ namespace ModEnvioCorreo.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+=======
+>>>>>>> origin/master
         internal static System.Drawing.Bitmap icon_html {
             get {
                 object obj = ResourceManager.GetObject("icon_html", resourceCulture);
@@ -103,6 +106,7 @@ namespace ModEnvioCorreo.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+<<<<<<< HEAD
         internal static System.Drawing.Bitmap icon_importexcel {
             get {
                 object obj = ResourceManager.GetObject("icon_importexcel", resourceCulture);
@@ -153,6 +157,8 @@ namespace ModEnvioCorreo.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+=======
+>>>>>>> origin/master
         internal static System.Drawing.Bitmap parameters_icn {
             get {
                 object obj = ResourceManager.GetObject("parameters_icn", resourceCulture);

@@ -59,6 +59,7 @@ namespace ModEnvioCorreo
             
         }
 
+<<<<<<< HEAD
         private void btnItemMailHtml_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             WfCorreoHTML wfe = new WfCorreoHTML();
@@ -113,5 +114,13 @@ namespace ModEnvioCorreo
             
             }
         }
+=======
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            WfCorreoHTML wfe = new WfCorreoHTML();
+            wfe.MdiParent = this;
+            wfe.Show();
+        }
+>>>>>>> origin/master
     }
 }
